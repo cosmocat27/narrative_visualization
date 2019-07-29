@@ -1,6 +1,9 @@
 <html>
     <head>
-        <style> rect {fill: lightblue; stroke: black; }</style>
+        <style>
+            rect {fill: lightblue; stroke: black; }
+            #rect2 {fill: green; stroke: black; }
+        </style>
     </head>
     
     <body onload='init()'>
@@ -20,22 +23,22 @@
                 
                 w = 600;
                 h = 600;
-                mid = 300;
                 mg = 100;
                 maxd = 150;
-                maxd_neg = 50
+                maxd_neg = 50;
+                mid = h * maxd / (maxd + maxd_neg);
                 
                 xs = d3.scaleBand()
-                .domain([0,1,2,3,4])
+                .domain(data.Country)
                 .range([0, w]);
                 ys_pos = d3.scaleLinear()
                 .domain([0,maxd])
                 .range([0, mid]);
                 ys_neg = d3.scaleLinear()
                 .domain([0,maxd_neg])
-                .range([mid, mid + (h - mid) * maxd_neg / maxd]);
+                .range([mid, h]);
                 ys_ax = d3.scaleLinear()
-                .domain([0,maxd])
+                .domain([-maxd_neg,maxd])
                 .range([h, 0]);
                 
                 // positive side
