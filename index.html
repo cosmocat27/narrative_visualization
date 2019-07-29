@@ -27,9 +27,10 @@
                 maxd = 150;
                 maxd_neg = 50;
                 mid = h * maxd / (maxd + maxd_neg);
+                countries = ["CHN", "USA", "RUS", "IND", "JPN"];
                 
                 xs = d3.scaleBand()
-                .domain(["CHN", "USA", "RUS", "IND", "JPN"])
+                .domain(countries])
                 .range([0, w]);
                 ys_pos = d3.scaleLinear()
                 .domain([0,maxd])
@@ -49,9 +50,9 @@
                 .data(data)
                 .enter()
                 .append("rect")
-                .attr("x", function(d,i) {return xs(i)})
+                .attr("x", function(d,i) {return xs(countries[i])})
                 .attr("y", function(d) {return mid-ys_pos(d.Nonrenewable)})
-                .attr("width", xs.bandwidth())
+                .attr("width", xs.bandwidth()-3)
                 .attr("height", function(d) {return ys_pos(d.Nonrenewable)});
                 
                 // negative side
@@ -62,9 +63,9 @@
                 .data(data)
                 .enter()
                 .append("rect")
-                .attr("x", function(d,i) {return xs(i)})
+                .attr("x", function(d,i) {return xs(countries[i])})
                 .attr("y", function(d) {return mid})
-                .attr("width", xs.bandwidth())
+                .attr("width", xs.bandwidth()-3)
                 .attr("height", function(d) {return ys_neg(d.Renewable) - mid});
                 
                 // y axis
