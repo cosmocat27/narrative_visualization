@@ -29,7 +29,7 @@
                 mid = h * maxd / (maxd + maxd_neg);
                 
                 xs = d3.scaleBand()
-                .domain(data.Country)
+                .domain(["CHN", "USA", "RUS", "IND", "JPN")
                 .range([0, w]);
                 ys_pos = d3.scaleLinear()
                 .domain([0,maxd])
