@@ -1,7 +1,61 @@
 <html>
-<head>
-</head>
-<body>
-<h1>Hello Page</h1>
-</body>
+    <head>
+        <style> rect {fill: lightblue; stroke: black; }</style>
+    </head>
+    
+    <body onload='init()'>
+        <h1>Hello Page</h1>
+        
+        <script src='https://d3js.org/d3.v5.min.js'></script>
+        
+        <svg width=300 height=300>
+        </svg>
+        
+        <script>
+            async function init() {
+                console.log("Hi abc");
+    
+                const data = await d3.csv(
+                'Data/Top5.csv');
+                
+                w = 200;
+                h = 200;
+                mg = 50;
+                maxd = 42;
+                
+                xs = d3.scaleBand()
+                .domain([0,1,2,3,4,5])
+                .range([0, w]);
+                ys = d3.scaleLinear()
+                .domain([0,maxd])
+                .range([0, h]);
+                ys_ax = d3.scaleLinear()
+                .domain([0,maxd])
+                .range([h, 0]);
+                
+                d3.select("svg")
+                .append("g")
+                .attr("transform", "translate("+mg+","+mg+")")
+                .selectAll("rect")
+                .data(data)
+                .enter()
+                .append("rect")
+                .attr("x", function(d,i) {return xs(i)})
+                .attr("y", function(d) {return h-ys(d)})
+                .attr("width", xs.bandwidth())
+                .attr("height", function(d) {return ys(d)});
+                
+                d3.select("svg")
+                .append("g")
+                .attr("transform", "translate("+mg+","+mg+")")
+                .call(d3.axisLeft(ys_ax));
+                
+                d3.select("svg")
+                .append("g")
+                .attr("transform", "translate("+mg+","+(h+mg)+")")
+                .call(d3.axisBottom(xs));
+            }
+        </script>
+        
+    </body>
 </html>
