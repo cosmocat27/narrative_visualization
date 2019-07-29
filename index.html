@@ -8,7 +8,7 @@
         
         <script src='https://d3js.org/d3.v5.min.js'></script>
         
-        <svg width=300 height=300>
+        <svg width=800 height=800>
         </svg>
         
         <script>
@@ -16,15 +16,15 @@
                 console.log("Hi abc");
     
                 const data = await d3.csv(
-                'Data/Top5.csv');
+                'https://github.com/cosmocat27/narrative_visualization/blob/master/Data/Top5.csv');
                 
-                w = 200;
-                h = 200;
-                mg = 50;
-                maxd = 42;
+                w = 800;
+                h = 800;
+                mg = 100;
+                maxd = 150;
                 
                 xs = d3.scaleBand()
-                .domain([0,1,2,3,4,5])
+                .domain([0,1,2,3,4])
                 .range([0, w]);
                 ys = d3.scaleLinear()
                 .domain([0,maxd])
@@ -41,9 +41,9 @@
                 .enter()
                 .append("rect")
                 .attr("x", function(d,i) {return xs(i)})
-                .attr("y", function(d) {return h-ys(d)})
+                .attr("y", function(d) {return h-ys(d.Nonrenewable)})
                 .attr("width", xs.bandwidth())
-                .attr("height", function(d) {return ys(d)});
+                .attr("height", function(d) {return ys(d.Nonrenewable)});
                 
                 d3.select("svg")
                 .append("g")
