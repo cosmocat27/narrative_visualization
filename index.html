@@ -18,21 +18,27 @@
                 
                 console.log(data);
                 
-                w = 800;
-                h = 800;
+                w = 600;
+                h = 600;
+                mid = 300;
                 mg = 100;
                 maxd = 150;
+                maxd_neg = 50
                 
                 xs = d3.scaleBand()
                 .domain([0,1,2,3,4])
                 .range([0, w]);
-                ys = d3.scaleLinear()
+                ys_pos = d3.scaleLinear()
                 .domain([0,maxd])
-                .range([0, h]);
+                .range([0, mid]);
+                ys_neg = d3.scaleLinear()
+                .domain([0,maxd_neg])
+                .range([mid, mid + (h - mid) * maxd_neg / maxd]);
                 ys_ax = d3.scaleLinear()
                 .domain([0,maxd])
                 .range([h, 0]);
                 
+                // positive side
                 d3.select("svg")
                 .append("g")
                 .attr("transform", "translate("+mg+","+mg+")")
@@ -41,15 +47,30 @@
                 .enter()
                 .append("rect")
                 .attr("x", function(d,i) {return xs(i)})
-                .attr("y", function(d) {return h-ys(d.Nonrenewable)})
+                .attr("y", function(d) {return mid-ys_pos(d.Nonrenewable)})
                 .attr("width", xs.bandwidth())
-                .attr("height", function(d) {return ys(d.Nonrenewable)});
+                .attr("height", function(d) {return ys_pos(d.Nonrenewable)});
                 
+                // negative side
+                d3.select("svg")
+                .append("g")
+                .attr("transform", "translate("+mg+","+mg+")")
+                .selectAll("rect")
+                .data(data)
+                .enter()
+                .append("rect")
+                .attr("x", function(d,i) {return xs(i)})
+                .attr("y", function(d) {return mid})
+                .attr("width", xs.bandwidth())
+                .attr("height", function(d) {return ys_neg(d.Renewable) - mid});
+                
+                // y axis
                 d3.select("svg")
                 .append("g")
                 .attr("transform", "translate("+mg+","+mg+")")
                 .call(d3.axisLeft(ys_ax));
                 
+                // x axis
                 d3.select("svg")
                 .append("g")
                 .attr("transform", "translate("+mg+","+(h+mg)+")")
