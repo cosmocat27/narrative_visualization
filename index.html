@@ -1,8 +1,8 @@
 <html>
     <head>
         <style>
-            rect {fill: lightblue; stroke: black; }
-            #rect2 {fill: green; stroke: black; }
+            rect.rect_pos {fill: lightblue; stroke: black; }
+            rect.rect_neg {fill: green; stroke: black; }
         </style>
     </head>
     
@@ -53,7 +53,8 @@
                 .attr("x", function(d,i) {return xs(countries[i])})
                 .attr("y", function(d) {return mid-ys_pos(d.Nonrenewable)})
                 .attr("width", xs.bandwidth()-3)
-                .attr("height", function(d) {return ys_pos(d.Nonrenewable)});
+                .attr("height", function(d) {return ys_pos(d.Nonrenewable)})
+                .attr('class', 'rect_pos');
                 
                 // negative side
                 d3.select("svg")
@@ -65,8 +66,9 @@
                 .append("rect")
                 .attr("x", function(d,i) {return xs(countries[i])})
                 .attr("y", function(d) {return mid})
-                .attr("width", xs.bandwidth()-3)
-                .attr("height", function(d) {return ys_neg(d.Renewable) - mid});
+                .attr("width", xs.bandwidth()-12)
+                .attr("height", function(d) {return ys_neg(d.Renewable) - mid})
+                .attr('class', 'rect_neg');
                 
                 // y axis
                 d3.select("svg")
