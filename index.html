@@ -81,7 +81,8 @@
                 // x axis
                 d3.select("svg")
                 .append("g")
-                .attr("transform", "translate("+mg+","+(ys_pos(0)+mg)+")")
+                .attr("transform", "translate("+mg+","+(ys_ax(0)+mg)+")")
+                .style("font", "14px times")
                 .call(d3.axisBottom(xs));
             }
         </script>
