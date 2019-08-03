@@ -1,8 +1,8 @@
 <html>
     <head>
         <style>
-            rect.rect_pos {fill: lightblue; stroke: black; }
-            rect.rect_neg {fill: green; stroke: black; }
+            rect.rect_pos {fill: DarkOrange; stroke: black; }
+            rect.rect_neg {fill: LawnGreen; stroke: black; }
         </style>
     </head>
     
@@ -52,7 +52,7 @@
                 .append("rect")
                 .attr("x", function(d,i) {return xs(countries[i])})
                 .attr("y", function(d) {return mid-ys_pos(d.Nonrenewable)})
-                .attr("width", xs.bandwidth()-3)
+                .attr("width", xs.bandwidth()-25)
                 .attr("height", function(d) {return ys_pos(d.Nonrenewable)})
                 .attr('class', 'rect_pos');
                 
@@ -66,7 +66,7 @@
                 .append("rect")
                 .attr("x", function(d,i) {return xs(countries[i])})
                 .attr("y", function(d) {return mid})
-                .attr("width", xs.bandwidth()-12)
+                .attr("width", xs.bandwidth()-25)
                 .attr("height", function(d) {return ys_neg(d.Renewable) - mid})
                 .attr('class', 'rect_neg');
                 
