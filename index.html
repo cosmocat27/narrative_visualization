@@ -50,9 +50,9 @@
                 .data(data)
                 .enter()
                 .append("rect")
-                .attr("x", function(d,i) {return xs(countries[i])})
+                .attr("x", function(d,i) {return xs(countries[i]) + 15})
                 .attr("y", function(d) {return mid-ys_pos(d.Nonrenewable)})
-                .attr("width", xs.bandwidth()-25)
+                .attr("width", xs.bandwidth()-15)
                 .attr("height", function(d) {return ys_pos(d.Nonrenewable)})
                 .attr('class', 'rect_pos');
                 
@@ -64,9 +64,9 @@
                 .data(data)
                 .enter()
                 .append("rect")
-                .attr("x", function(d,i) {return xs(countries[i])})
+                .attr("x", function(d,i) {return xs(countries[i]) + 15})
                 .attr("y", function(d) {return mid})
-                .attr("width", xs.bandwidth()-25)
+                .attr("width", xs.bandwidth()-15)
                 .attr("height", function(d) {return ys_neg(d.Renewable) - mid})
                 .attr('class', 'rect_neg');
                 
@@ -79,7 +79,7 @@
                 // x axis
                 d3.select("svg")
                 .append("g")
-                .attr("transform", "translate("+mg+","+(h+mg)+")")
+                .attr("transform", "translate("+mg+","+(ys_pos(0)+mg)+")")
                 .call(d3.axisBottom(xs));
             }
         </script>
