@@ -19,7 +19,7 @@
         <svg width=800 height=800>
         </svg>
         
-        <form id="form_details" action="detail.html" method="GET">
+        <form id="form_breakdown" action="breakdown.html" method="GET">
             <input id="country_field" name="country" value="USA">
             <button type="submit">Submit</button>
         </form>
@@ -81,10 +81,8 @@
                 });
                 
                 rect_pos.on("click", function() {
-                    console.log("clicked");
-                    console.log(d3.select(this).data()[0].Country);
                     document.getElementById("country_field").value=d3.select(this).data()[0].Country;
-                    //document.getElementById("form_details").submit();
+                    document.getElementById("form_breakdown").submit();
                 });
                 
                 text_pos = d3.select("svg")
@@ -98,7 +96,7 @@
                     .attr("y", function(d) {return mid-ys_pos(d.Nonrenewable) - 5})
                 
                 text_pos.transition()
-                    .delay(2500)
+                    .duration(2500)
                     .text(function(d) {return d.Nonrenewable});
                 
                 // negative side
@@ -126,7 +124,10 @@
                     d3.select(this).attr("class", "rect_neg")
                 });
                 
-                rect_neg.on("click", function() {});
+                rect_neg.on("click", function() {
+                    document.getElementById("country_field").value=d3.select(this).data()[0].Country;
+                    document.getElementById("form_breakdown").submit();
+                });
                 
                 text_neg = d3.select("svg")
                     .append("g")
@@ -139,7 +140,7 @@
                     .attr("y", function(d) {return ys_neg(d.Renewable) + 25})
                 
                 text_neg.transition()
-                    .delay(2500)
+                    .duration(2500)
                     .text(function(d) {return d.Renewable});
                 
                 // y axis
