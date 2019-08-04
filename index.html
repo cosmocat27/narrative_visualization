@@ -58,13 +58,10 @@
                 .attr("y", function(d) {return mid-ys_pos(0)})
                 .attr("width", xs.bandwidth()-15)
                 .attr("height", function(d) {return ys_pos(0)})
-                .attr("class", "rect_pos");
+                .attr("class", "rect_pos")
                 .transition()
-                .attr("x", function(d,i) {return xs(countries[i]) + 15})
                 .attr("y", function(d) {return mid-ys_pos(d.Nonrenewable)})
-                .attr("width", xs.bandwidth()-15)
-                .attr("height", function(d) {return ys_pos(d.Nonrenewable)})
-                .attr("class", "rect_pos");
+                .attr("height", function(d) {return ys_pos(d.Nonrenewable)});
                 
                 // negative side
                 d3.select("svg")
@@ -75,16 +72,12 @@
                 .enter()
                 .append("rect")
                 .attr("x", function(d,i) {return xs(countries[i]) + 15})
-                .attr("y", function(d) {return mid-ys_pos(0)})
-                .attr("width", xs.bandwidth()-15)
-                .attr("height", function(d) {return ys_pos(0)})
-                .attr("class", "rect_pos");
-                .transition()
-                .attr("x", function(d,i) {return xs(countries[i]) + 15})
                 .attr("y", function(d) {return mid})
                 .attr("width", xs.bandwidth()-15)
-                .attr("height", function(d) {return ys_neg(d.Renewable) - mid})
-                .attr("class', "rect_neg");
+                .attr("height", function(d) {return ys_neg(0) - mid})
+                .attr("class", "rect_pos")
+                .transition()
+                .attr("height", function(d) {return ys_neg(d.Renewable) - mid});
                 
                 // y axis
                 d3.select("svg")
