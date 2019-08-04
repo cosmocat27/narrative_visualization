@@ -68,17 +68,17 @@
                     .enter()
                     .append("path")
                     .attr("d", arc)
-                    .attr("fill", function(d, i) {return colors[i]});
-                                
+                    .attr("fill", function(d) {return colors[d.index]});
+                
                 var chartdata_cumsum = [];
                 chartdata.reduce(function(a,b,i) {return chartdata_cumsum[i] = a + parseFloat(b)}, 0);
                 console.log(chartdata_cumsum);
                 var chartdata_tot = chartdata_cumsum[chartdata_cumsum.length-1];
                 var chartdata_pct = chartdata.map(function(d, i) {return [d/chartdata_tot, chartdata_cumsum[i]/chartdata_tot]});
                 console.log(chartdata_pct);
-                var x_text = function(p, t, r) {return r * Math.cos(2*Math.PI * (t - p/2))};
-                var y_text = function(p, t, r) {return r * Math.sin(2*Math.PI * (t - p/2))};
-
+                var x_text = function(p, t, r) {return r * Math.cos(Math.PI/2 - 2*Math.PI * (t - p/2))};
+                var y_text = function(p, t, r) {return r * Math.sin(Math.PI/2 - 2*Math.PI * (t - p/2))};
+                
                 d3.select("svg")
                     .append("g")
                     .attr("transform", "translate("+(mg_left+r)+","+(mg_top+r)+")")
@@ -86,8 +86,8 @@
                     .data(chartdata_pct)
                     .enter()
                     .append("text")
-                    .attr("x", function(d) {return x_text(d[0], d[1], r)})
-                    .attr("y", function(d) {return y_text(d[0], d[1], r)})
+                    .attr("x", function(d) {return x_text(d[0], d[1], r*2/3)})
+                    .attr("y", function(d) {return y_text(d[0], d[1], r*2/3)})
                     .text(function(d) {return Math.round(100*d[0])});
             }
         </script>
