@@ -22,7 +22,6 @@
                 country = location.search.substring(1).split("&")[0].split("=")[1];
                 console.log(country);
                 
-                country = "USA";
                 const data = await d3.csv(
                     'Data/' + country + '.csv');
                 console.log(data);
