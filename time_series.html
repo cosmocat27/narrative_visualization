@@ -42,6 +42,8 @@
                 document.getElementById("title").innerHTML = "Energy usage over time for " + country_full;
                 
                 years = data.map(function(d,i) {return parseInt(d.Year)});
+                xmin = Math.min.apply(null, years);
+                xmax = Math.max.apply(null, years);
                 
                 w = 600;
                 h = 600;
@@ -51,15 +53,11 @@
                 var colors = ['DarkOrange','SkyBlue','Ivory','LawnGreen'];
                 
                 xs = d3.scaleLinear()
-                    .domain([Math.min(years), Math.max(years)])
+                    .domain([xmin, xmax])
                     .range([0, w]);
                 ys = d3.scaleLinear()
                     .domain([0, maxd])
                     .range([h, 0]);
-                
-                console.log(years);
-                console.log(Math.min.apply(null, years));
-                console.log(Math.max.apply(null, years));
                 
                 data.columns.slice(1).forEach(function(k, j) {
                      line = d3.line()
