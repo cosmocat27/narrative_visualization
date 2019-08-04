@@ -12,8 +12,8 @@
     <body onload='init()'>
         <h1>CS498 Narrative Visualization Assignment</h1>
         <div class="chart_title">
-        <h2>Top Countries by Energy Usage in 2016</h2>
-        <div>
+            <h2>Top Countries by Energy Usage in 2016</h2>
+        </div>
         
         <svg width=800 height=800>
         </svg>
@@ -59,7 +59,7 @@
                 .attr("width", xs.bandwidth()-15)
                 .attr("height", function(d) {return ys_pos(0)})
                 .attr("class", "rect_pos")
-                .transition()
+                .transition().duration(3000)
                 .attr("y", function(d) {return mid-ys_pos(d.Nonrenewable)})
                 .attr("height", function(d) {return ys_pos(d.Nonrenewable)});
                 
@@ -75,8 +75,8 @@
                 .attr("y", function(d) {return mid})
                 .attr("width", xs.bandwidth()-15)
                 .attr("height", function(d) {return ys_neg(0) - mid})
-                .attr("class", "rect_pos")
-                .transition()
+                .attr("class", "rect_neg")
+                .transition().duration(3000)
                 .attr("height", function(d) {return ys_neg(d.Renewable) - mid});
                 
                 // y axis
