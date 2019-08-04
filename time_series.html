@@ -2,6 +2,10 @@
     <head>
         <style>
             div.chart_title {margin-left: 180px; margin-top: 50px;}
+            .line {
+                  fill: none;
+                  stroke-width: 2px;
+            }
         </style>
         
         <script src='https://d3js.org/d3.v5.min.js'></script>
@@ -70,8 +74,8 @@
                     .append("path")
                     .data([data.slice(30)])
                     .attr("d", line)
-                    //.attr("class", "line")
-                    //.attr("color", colors[0]);
+                    .attr("class", "line")
+                    .attr("stroke", colors[0]);
                 
                 data.columns.slice(1).forEach(function(k) {
                     console.log(k);
