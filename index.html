@@ -34,53 +34,59 @@
                 countries = ["CHN", "USA", "RUS", "IND", "JPN"];
                 
                 xs = d3.scaleBand()
-                .domain(countries)
-                .range([0, w]);
+                    .domain(countries)
+                    .range([0, w]);
                 ys_pos = d3.scaleLinear()
-                .domain([0,maxd])
-                .range([0, mid]);
+                    .domain([0,maxd])
+                    .range([0, mid]);
                 ys_neg = d3.scaleLinear()
-                .domain([0,maxd_neg])
-                .range([mid, h]);
+                    .domain([0,maxd_neg])
+                    .range([mid, h]);
                 ys_ax = d3.scaleLinear()
-                .domain([-maxd_neg,maxd])
-                .range([h, 0]);
+                    .domain([-maxd_neg,maxd])
+                    .range([h, 0]);
                 
                 // positive side
-                d3.select("svg")
-                .append("g")
-                .attr("transform", "translate("+mg+","+mg+")")
-                .selectAll("rect")
-                .data(data)
-                .enter()
-                .append("rect")
-                .attr("x", function(d,i) {return xs(countries[i]) + 15})
-                .attr("y", function(d) {return mid-ys_pos(0)})
-                .attr("width", xs.bandwidth()-15)
-                .attr("height", function(d) {return ys_pos(0)})
-                .attr("class", "rect_pos")
-                .transition().duration(3000)
-                .attr("y", function(d) {return mid-ys_pos(d.Nonrenewable)})
-                .attr("height", function(d) {return ys_pos(d.Nonrenewable)})
-                .on("mouseover", function(d,i) {
+                rect_pos = d3.select("svg")
+                    .append("g")
+                    .attr("transform", "translate("+mg+","+0+")")
+                    .selectAll("rect")
+                    .data(data)
+                    .enter()
+                    .append("rect")
+                    .attr("x", function(d,i) {return xs(countries[i]) + 15})
+                    .attr("y", function(d) {return mid-ys_pos(0)})
+                    .attr("width", xs.bandwidth()-15)
+                    .attr("height", function(d) {return ys_pos(0)})
+                    .attr("class", "rect_pos")
+                
+                rects_pos.transition()
+                    .duration(3000)
+                    .attr("y", function(d) {return mid-ys_pos(d.Nonrenewable)})
+                    .attr("height", function(d) {return ys_pos(d.Nonrenewable)})
+                
+                rects_pos.on("mouseover", function(d,i) {
                     d3.select(this).attr("stroke", "yellow")});
                 
                 // negative side
-                d3.select("svg")
-                .append("g")
-                .attr("transform", "translate("+mg+","+mg+")")
-                .selectAll("rect")
-                .data(data)
-                .enter()
-                .append("rect")
-                .attr("x", function(d,i) {return xs(countries[i]) + 15})
-                .attr("y", function(d) {return mid})
-                .attr("width", xs.bandwidth()-15)
-                .attr("height", function(d) {return ys_neg(0) - mid})
-                .attr("class", "rect_neg")
-                .transition().duration(3000)
-                .attr("height", function(d) {return ys_neg(d.Renewable) - mid})
-                .on("mouseover", function(d,i) {
+                rect_neg = d3.select("svg")
+                    .append("g")
+                    .attr("transform", "translate("+mg+","+mg+")")
+                    .selectAll("rect")
+                    .data(data)
+                    .enter()
+                    .append("rect")
+                    .attr("x", function(d,i) {return xs(countries[i]) + 15})
+                    .attr("y", function(d) {return mid})
+                    .attr("width", xs.bandwidth()-15)
+                    .attr("height", function(d) {return ys_neg(0) - mid})
+                    .attr("class", "rect_neg")
+                
+                rect_neg.transition()
+                    .duration(3000)
+                    .attr("height", function(d) {return ys_neg(d.Renewable) - mid})
+                
+                rect_neg.on("mouseover", function(d,i) {
                     d3.select(this).attr("stroke", "yellow")});
                 
                 // y axis
