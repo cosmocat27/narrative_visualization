@@ -19,7 +19,7 @@
         <svg width=800 height=800>
         </svg>
         
-        <form id="form_details" action="/detail.html" method="GET">
+        <form id="form_details" action="/detail.html" method="POST">
             <input name="country" value="USA">
             <button type="submit">Submit</button>
         </form>
@@ -62,9 +62,9 @@
                     .enter()
                     .append("rect")
                     .attr("x", function(d,i) {return xs(countries[i]) + 15})
-                    .attr("y", function(d) {return mid-ys_pos(20)})
+                    .attr("y", function(d) {return mid-ys_pos(0)})
                     .attr("width", xs.bandwidth()-15)
-                    .attr("height", function(d) {return ys_pos(20)})
+                    .attr("height", function(d) {return ys_pos(0)})
                     .attr("class", "rect_pos")
                 
                 rect_pos.transition()
@@ -110,7 +110,7 @@
                     .attr("x", function(d,i) {return xs(countries[i]) + 15})
                     .attr("y", function(d) {return mid})
                     .attr("width", xs.bandwidth()-15)
-                    .attr("height", function(d) {return ys_neg(20) - mid})
+                    .attr("height", function(d) {return ys_neg(0) - mid})
                     .attr("class", "rect_neg")
                 
                 rect_neg.transition(2500)
