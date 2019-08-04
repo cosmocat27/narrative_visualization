@@ -71,7 +71,7 @@
                     .attr("fill", function(d, i) {return colors[i]});
                                 
                 var chartdata_cumsum = [];
-                chartdata.reduce(function(a,b,i) {return chartdata_cumsum[i] = a+b}, 0);
+                chartdata.reduce(function(a,b,i) {return chartdata_cumsum[i] = a + parseInt(b)}, 0);
                 console.log(chartdata_cumsum);
                 var chartdata_tot = chartdata_cumsum[chartdata_cumsum.length-1];
                 var chartdata_pct = chartdata.map(function(d, i) {return [100 * d/chartdata_tot, chartdata_cumsum[i]]});
