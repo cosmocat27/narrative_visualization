@@ -55,15 +55,12 @@
                     .range([0, w]);
                 ys = d3.scaleLinear()
                     .domain([0, maxd])
-                    .range([0, h]);
-                ys_ax = d3.scaleLinear()
-                    .domain([0, maxd])
                     .range([h, 0]);
                 
                 data.columns.slice(1).forEach(function(k, j) {
                      line = d3.line()
                         .x(function(d, i) {return xs(i)})
-                        .y(function(d) {return ys_ax(d[k])});
+                        .y(function(d) {return ys(d[k])});
                 
                     d3.select("svg")
                         .append("g")
@@ -74,6 +71,18 @@
                         .attr("class", "line")
                         .attr("stroke", colors[j]);
                 });
+                
+                // y axis
+                d3.select("svg")
+                    .append("g")
+                    .attr("transform", "translate("+mg_left+","+mg_top+")")
+                    .call(d3.axisLeft(ys));
+                
+                // x axis
+                d3.select("svg")
+                    .append("g")
+                    .attr("transform", "translate("+mg_left+","+(h+mg_top)+")")
+                    .call(d3.axisBottom(xs));
                 
                 /*
                 rect_pos.transition()
@@ -107,19 +116,6 @@
                 text_pos.transition()
                     .duration(2500)
                     .text(function(d) {return d.Nonrenewable});
-                
-                // y axis
-                d3.select("svg")
-                .append("g")
-                .attr("transform", "translate("+mg_left+","+mg_top+")")
-                .call(d3.axisLeft(ys_ax));
-                
-                // x axis
-                d3.select("svg")
-                .append("g")
-                .attr("transform", "translate("+mg_left+","+(ys_ax(0)+mg_top)+")")
-                .style("font", "14px times")
-                .call(d3.axisBottom(xs));
                 */
             }
         </script>
