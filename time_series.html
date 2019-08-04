@@ -58,6 +58,11 @@
                     .domain([0, maxd])
                     .range([h, 0]);
                 
+                console.log(years.length);
+                console.log(xs(0));
+                console.log(xs(2));
+                console.log(xs(100));
+                
                 d3.select("svg")
                     .append("g")
                     .attr("transform", "translate("+mg_left+","+mg_top+")")
@@ -68,7 +73,7 @@
                     .attr("x", function(d,i) {return xs(i)})
                     .attr("y", function(d) {return ys_ax(d["Coal"])})
                     .attr("class", "line")
-                    .attr("color", function(d,i) {return colors[i]});
+                    .attr("color", colors[0]});
                 
                 data.columns.slice(1).forEach(function(k) {
                     console.log(k);
