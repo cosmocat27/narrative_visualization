@@ -29,10 +29,17 @@
                 country = location.search.substring(1).split("&")[0].split("=")[1];
                 console.log(country);
                 
-                country = "USA";
                 const data = await d3.csv(
-                'Data/' + country + '.csv');
+                    'Data/' + country + '.csv');
                 console.log(data);
+                
+                const lookup = await d3.csv(
+                    'Data/Lookup.csv');
+                console.log(lookup);
+                
+                country_full = lookup.full[lookup.abbr.indexOf(country)];
+                console.log(country_full);
+                document.getElementById("title").innerHTML = "Energy usage over time for " + country_full;
                 
                 w = 600;
                 h = 600;
