@@ -61,7 +61,7 @@
                 
                 line = d3.line()
                     .x(function(d, i) {return xs(i)})
-                    .y(function(d) {return ys(d["Coal"])});
+                    .y(function(d) {return ys_ax(d["Coal"])});
                 console.log(line);
                 
                 d3.select("svg")
@@ -77,7 +77,7 @@
                     console.log(k);
                     //line = d3.line()
                     //    .x(function(d, i) {return xs(i)})
-                    //    .y(function(d) {return ys(d[k])})
+                    //    .y(function(d) {return ys_ax(d[k])})
                 });
                 
                 /*
