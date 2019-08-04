@@ -3,7 +3,7 @@
         <style>
             rect.rect_pos {fill: DarkOrange; stroke: black; }
             rect.rect_neg {fill: LawnGreen; stroke: black; }
-            div.chart_title {margin-left: 100px}
+            div.chart_title {margin-left: 100px; margin-bottom: -100px}
         </style>
         
         <script src='https://d3js.org/d3.v5.min.js'></script>
@@ -49,7 +49,7 @@
                 // positive side
                 rect_pos = d3.select("svg")
                     .append("g")
-                    .attr("transform", "translate("+mg+","+0+")")
+                    .attr("transform", "translate("+mg+","+mg+")")
                     .selectAll("rect")
                     .data(data)
                     .enter()
