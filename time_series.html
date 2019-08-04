@@ -60,28 +60,19 @@
                     .domain([0, maxd])
                     .range([h, 0]);
                 
-                console.log(xs(0));
-                console.log(xs(years.length));
+                data.columns.slice(1).forEach(function(k, j) {
+                     line = d3.line()
+                        .x(function(d, i) {return xs(i)})
+                        .y(function(d) {return ys_ax(d[k])});
                 
-                line = d3.line()
-                    .x(function(d, i) {return xs(i)})
-                    .y(function(d) {return ys_ax(d["Coal"])});
-                console.log(line);
-                
-                d3.select("svg")
-                    .append("g")
-                    .attr("transform", "translate("+mg_left+","+mg_top+")")
-                    .append("path")
-                    .data([data])
-                    .attr("d", line)
-                    .attr("class", "line")
-                    .attr("stroke", colors[0]);
-                
-                data.columns.slice(1).forEach(function(k) {
-                    console.log(k);
-                    //line = d3.line()
-                    //    .x(function(d, i) {return xs(i)})
-                    //    .y(function(d) {return ys_ax(d[k])})
+                    d3.select("svg")
+                        .append("g")
+                        .attr("transform", "translate("+mg_left+","+mg_top+")")
+                        .append("path")
+                        .data([data])
+                        .attr("d", line)
+                        .attr("class", "line")
+                        .attr("stroke", colors[j]);
                 });
                 
                 /*
