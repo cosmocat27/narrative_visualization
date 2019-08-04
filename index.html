@@ -20,16 +20,19 @@
         </svg>
         
         <form id="form_breakdown" action="breakdown.html" method="GET">
-            <input id="country_field" name="country" value="USA">
+            <input id="country_field" name="country" value="">
             <button type="submit">Submit</button>
         </form>
         
         <script>
             async function init() {
                 const data = await d3.csv(
-                'Data/Top5.csv');
-                
+                    'Data/Top5.csv');
                 console.log(data);
+                
+                const lookup = await d3.csv(
+                    'Data/Lookup.csv);
+                console.log(lookup);
                 
                 w = 600;
                 h = 600;
@@ -38,7 +41,7 @@
                 maxd = 150;
                 maxd_neg = 50;
                 mid = h * maxd / (maxd + maxd_neg);
-                countries = ["CHN", "USA", "RUS", "IND", "JPN"];
+                countries = data.Countries;
                 
                 xs = d3.scaleBand()
                     .domain(countries)
