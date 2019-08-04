@@ -3,7 +3,7 @@
         <style>
             rect.rect_pos {fill: DarkOrange; stroke: black; }
             rect.rect_neg {fill: LawnGreen; stroke: black; }
-            div.chart_title {margin-left: 100px; margin-bottom: -100px}
+            div.chart_title {margin-left: 150px}
         </style>
         
         <script src='https://d3js.org/d3.v5.min.js'></script>
@@ -27,7 +27,8 @@
                 
                 w = 600;
                 h = 600;
-                mg = 100;
+                mg_left = 100;
+                mg_top = 20;
                 maxd = 150;
                 maxd_neg = 50;
                 mid = h * maxd / (maxd + maxd_neg);
@@ -49,7 +50,7 @@
                 // positive side
                 rect_pos = d3.select("svg")
                     .append("g")
-                    .attr("transform", "translate("+mg+","+mg+")")
+                    .attr("transform", "translate("+mg_left+","+mg_top+")")
                     .selectAll("rect")
                     .data(data)
                     .enter()
@@ -71,7 +72,7 @@
                 // negative side
                 rect_neg = d3.select("svg")
                     .append("g")
-                    .attr("transform", "translate("+mg+","+mg+")")
+                    .attr("transform", "translate("+mg_left+","+mg_top+")")
                     .selectAll("rect")
                     .data(data)
                     .enter()
@@ -92,13 +93,13 @@
                 // y axis
                 d3.select("svg")
                 .append("g")
-                .attr("transform", "translate("+mg+","+mg+")")
+                .attr("transform", "translate("+mg_left+","+mg_top+")")
                 .call(d3.axisLeft(ys_ax));
                 
                 // x axis
                 d3.select("svg")
                 .append("g")
-                .attr("transform", "translate("+mg+","+(ys_ax(0)+mg)+")")
+                .attr("transform", "translate("+mg_left+","+(ys_ax(0)+mg_top)+")")
                 .style("font", "14px times")
                 .call(d3.axisBottom(xs));
             }
