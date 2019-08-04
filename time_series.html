@@ -49,7 +49,7 @@
                 var colors = ['DarkOrange','SkyBlue','Ivory','LawnGreen'];
                 
                 xs = d3.scaleLinear()
-                    .domain(0, years.length)
+                    .domain([0, years.length])
                     .range([0, w]);
                 ys = d3.scaleLinear()
                     .domain([0, maxd])
