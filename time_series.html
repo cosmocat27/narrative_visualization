@@ -1,10 +1,7 @@
 <html>
     <head>
         <style>
-            rect.rect_pos {fill: DarkOrange; stroke: black; }
-            rect.rect_neg {fill: LawnGreen; stroke: black; }
             div.chart_title {margin-left: 180px; margin-top: 50px;}
-            rect.rect_highlight {fill: SkyBlue; stroke: black; }
         </style>
         
         <script src='https://d3js.org/d3.v5.min.js'></script>
@@ -42,37 +39,44 @@
                 country_full = full[abbr.indexOf(country)];
                 document.getElementById("title").innerHTML = "Energy usage over time for " + country_full;
                 
+                years = data.map(function(d,i) {return d.Year});
+                
                 w = 600;
                 h = 600;
                 mg_left = 100;
                 mg_top = 10;
                 maxd = 50;
+                var colors = ['DarkOrange','SkyBlue','Ivory','LawnGreen'];
                 
-                /*
-                xs = d3.scaleBand()
-                    .domain(countries)
+                xs = d3.scaleLinear()
+                    .domain(0, years.length)
                     .range([0, w]);
                 ys = d3.scaleLinear()
-                    .domain([0,maxd])
-                    .range([0, mid]);
+                    .domain([0, maxd])
+                    .range([0, h]);
                 ys_ax = d3.scaleLinear()
-                    .domain([-maxd_neg,maxd])
+                    .domain([0, maxd])
                     .range([h, 0]);
                 
-                // positive side
-                rect_pos = d3.select("svg")
+                d3.select("svg")
                     .append("g")
                     .attr("transform", "translate("+mg_left+","+mg_top+")")
-                    .selectAll("rect")
+                    .selectAll("path")
                     .data(data)
                     .enter()
-                    .append("rect")
-                    .attr("x", function(d,i) {return xs(countries[i]) + 15})
-                    .attr("y", function(d) {return mid-ys(0)})
-                    .attr("width", xs.bandwidth()-15)
-                    .attr("height", function(d) {return ys(0)})
-                    .attr("class", "rect_pos")
+                    .attr("x", function(d,i) {return xs(i)})
+                    .attr("y", function(d) {return ys_ax(d["Coal"])})
+                    .attr("class", "line")
+                    .attr("color", function(d,i) {return colors[i]});
                 
+                data.columns.slice(1).forEach(function(k) {
+                    console.log(k);
+                    //line = d3.line()
+                    //    .x(function(d, i) {return xs(i)})
+                    //    .y(function(d) {return ys(d[k])}
+                });
+                
+                /*
                 rect_pos.transition()
                     .duration(2500)
                     .attr("y", function(d) {return mid-ys(d.Nonrenewable)})
