@@ -69,10 +69,19 @@
                     .append("path")
                     .attr("d", arc)
                     .attr("fill", function(d, i) {return colors[i]});
+                                
+                var chartdata_cumsum = [];
+                chartdata.reduce(function(a,b,i) {return new_array[i] = a+b}, 0);
+                console.log(chartdata_cumsum);
+                var chartdata_tot = chartdata_cumsum[chartdata_cumsum.length-1];
+                var chartdata_pct = chartdata.map(function(d, i) {return [100 * d/chartdata_tot, chartdata_cumsum[i]]});
+                console.log(chartdata_pct);
+                var x_text = function(p, t) {return 1};
+                var y_text = function(p, t) {return 1};
 
                 d3.select("svg")
                     .append("g")
-                    .attr("transform", "translate("+(mg_left+r)","+(mg_top+r)+")")
+                    .attr("transform", "translate("+(mg_left+r)+","+(mg_top+r)+")")
                     .selectAll("text")
                     .data(chartdata_pct)
                     .enter()
