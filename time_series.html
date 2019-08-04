@@ -58,9 +58,8 @@
                     .range([h, 0]);
                 
                 console.log(years);
-                console.log(Math.min(years));
-                console.log(Math.max(years));
-                console.log(xs.domain);
+                console.log(Math.min.apply(null, years));
+                console.log(Math.max.apply(null, years));
                 
                 data.columns.slice(1).forEach(function(k, j) {
                      line = d3.line()
