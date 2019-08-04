@@ -27,7 +27,6 @@
         <script>
             async function init() {
                 country = location.search.substring(1).split("&")[0].split("=")[1];
-                console.log(country);
                 document.getElementById("country_field").value=country;
                 
                 const data = await d3.csv(
@@ -41,7 +40,6 @@
                 full = lookup.map(function(d,i) {return d.Full});
                 
                 country_full = full[abbr.indexOf(country)];
-                console.log(country_full);
                 document.getElementById("title").innerHTML = "Energy source distribution for " + country_full;
                 
                 w = 600;
@@ -57,13 +55,10 @@
                 });
                 console.log(chartdata);
                 
-                var data2 = [4,8,15,16,23,42];
-                var color2 = ['pink','lightyellow','lightgreen','lightcyan','lightblue','violet'];
-                var color = ['DarkOrange','SkyBlue','Ivory','LawnGreen'];
+                var colors = ['DarkOrange','SkyBlue','Ivory','LawnGreen'];
                 var pie = d3.pie();
                 var arc = d3.arc().innerRadius(0).outerRadius(r);
                 
-                console.log(data[data.length-1]);
                 d3.select("svg")
                     .append("g")
                     .attr("transform", "translate("+(mg_left+r)+","+(r+mg_top)+")")
@@ -72,7 +67,7 @@
                     .enter()
                     .append("path")
                     .attr("d", arc)
-                    .attr("fill", function(d, i) {return color[i]});
+                    .attr("fill", function(d, i) {return colors[i]});
             }
         </script>
         
