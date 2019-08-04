@@ -19,8 +19,8 @@
         
         <script>
             async function init() {
-                parameters = location.search.substring(1).split("&");
-                console.log(parameters);
+                country = location.search.substring(1).split("&")[0].split("=")[1];
+                console.log(country);
                 
                 country = "USA";
                 const data = await d3.csv(
