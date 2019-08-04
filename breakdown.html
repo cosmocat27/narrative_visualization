@@ -47,7 +47,7 @@
                     .append("g")
                     .attr("transform", "translate("+(mg_left+r)+","+(r+mg_top)+")")
                     .selectAll("path")
-                    .data(pie(data[data.length-1]))
+                    .data(pie(data[data.length-1].slice(1)))
                     .enter()
                     .append("path")
                     .attr("d", arc)
