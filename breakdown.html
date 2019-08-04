@@ -17,10 +17,16 @@
         <svg width=800 height=800>
         </svg>
         
+        <form id="form_timeseries" action="time_series.html" method="GET">
+            <input id="country_field" type="hidden" name="country" value="">
+            <button type="submit">Submit</button>
+        </form>
+        
         <script>
             async function init() {
                 country = location.search.substring(1).split("&")[0].split("=")[1];
                 console.log(country);
+                document.getElementById("country_field").value=country;
                 
                 const data = await d3.csv(
                     'Data/' + country + '.csv');
