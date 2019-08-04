@@ -51,7 +51,7 @@
                 var colors = ['DarkOrange','SkyBlue','Ivory','LawnGreen'];
                 
                 xs = d3.scaleLinear()
-                    .domain([0, years.length])
+                    .domain([Math.min(years), Math.max(years)])
                     .range([0, w]);
                 ys = d3.scaleLinear()
                     .domain([0, maxd])
@@ -59,7 +59,7 @@
                 
                 data.columns.slice(1).forEach(function(k, j) {
                      line = d3.line()
-                        .x(function(d, i) {return xs(i)})
+                        .x(function(d, i) {return xs(years[i])})
                         .y(function(d) {return ys(d[k])});
                 
                     d3.select("svg")
