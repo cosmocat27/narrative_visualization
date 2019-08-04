@@ -57,6 +57,11 @@
                     .domain([0, maxd])
                     .range([h, 0]);
                 
+                console.log(years);
+                console.log(Math.min(years));
+                console.log(Math.max(years));
+                console.log(xs.domain);
+                
                 data.columns.slice(1).forEach(function(k, j) {
                      line = d3.line()
                         .x(function(d, i) {return xs(years[i])})
