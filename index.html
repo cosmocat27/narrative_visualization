@@ -82,6 +82,7 @@
                 
                 rect_pos.on("click", function() {
                     console.log("clicked");
+                    console.log(d3.select(this).data();
                     document.getElementById("country_field").value=d3.select(this).data().Country;
                     //document.getElementById("form_details").submit();
                 });
