@@ -19,6 +19,11 @@
         <svg width=800 height=800>
         </svg>
         
+        <form id="form_details" action="/detail.html" method="GET">
+            <input name="country" value="USA">
+            <button type="submit">Submit</button>
+        </form>
+        
         <script>
             async function init() {
                 const data = await d3.csv(
@@ -68,12 +73,17 @@
                     .attr("height", function(d) {return ys_pos(d.Nonrenewable)});
                 
                 rect_pos.on("mouseover", function() {
-                    d3.select(this).attr("class", "rect_highlight")});
+                    d3.select(this).attr("class", "rect_highlight")
+                });
                 
                 rect_pos.on("mouseout", function() {
-                    d3.select(this).attr("class", "rect_pos")});
+                    d3.select(this).attr("class", "rect_pos")
+                });
                 
-                rect_pos.on("click", function() {});
+                rect_pos.on("click", function() {
+                    console.log("clicked");
+                    document.getElementById("form_details").submit();
+                });
                 
                 text_pos = d3.select("svg")
                     .append("g")
@@ -85,7 +95,8 @@
                     .attr("x", function(d,i) {return xs(countries[i]) + 45})
                     .attr("y", function(d) {return mid-ys_pos(d.Nonrenewable) - 5})
                 
-                text_pos.transition(2500)
+                text_pos.transition()
+                    .delay(2500)
                     .text(function(d) {return d.Nonrenewable});
                 
                 // negative side
@@ -106,10 +117,12 @@
                     .attr("height", function(d) {return ys_neg(d.Renewable) - mid});
                 
                 rect_neg.on("mouseover", function() {
-                    d3.select(this).attr("class", "rect_highlight")});
+                    d3.select(this).attr("class", "rect_highlight")
+                });
                 
                 rect_neg.on("mouseout", function() {
-                    d3.select(this).attr("class", "rect_neg")});
+                    d3.select(this).attr("class", "rect_neg")
+                });
                 
                 rect_neg.on("click", function() {});
                 
