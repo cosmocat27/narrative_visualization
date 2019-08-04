@@ -20,7 +20,7 @@
         </svg>
         
         <form id="form_details" action="detail.html" method="POST">
-            <input name="country" value="USA">
+            <input id="country_field" name="country" value="USA">
             <button type="submit">Submit</button>
         </form>
         
@@ -82,7 +82,8 @@
                 
                 rect_pos.on("click", function() {
                     console.log("clicked");
-                    document.getElementById("form_details").submit();
+                    document.getElementById("country_field").value=d3.select(this).data().Country;
+                    //document.getElementById("form_details").submit();
                 });
                 
                 text_pos = d3.select("svg")
