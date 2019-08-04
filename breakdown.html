@@ -70,8 +70,7 @@
                     .attr("d", arc)
                     .attr("fill", function(d) {return colors[d.index]});
                 
-                chartdata.sort();
-                chartdata.reverse();
+                chartdata.sort(function(a, b){return b - a});
                 console.log(chartdata);
                 var chartdata_cumsum = [];
                 chartdata.reduce(function(a,b,i) {return chartdata_cumsum[i] = a + b}, 0);
