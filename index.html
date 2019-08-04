@@ -72,6 +72,17 @@
                 
                 rect_pos.on("click", function() {});
                 
+                text_pos = d3.select("svg")
+                    .append("g")
+                    .attr("transform", "translate("+mg_left+","+mg_top+")")
+                    .selectAll("text")
+                    .data(data)
+                    .enter()
+                    .append("text")
+                    .attr("x", function(d,i) {return xs(countries[i]) + 15})
+                    .attr("y", function(d) {return mid-ys_pos(d.Nonrenewable)})
+                    .text(function(d) {return d.Nonrenewable});
+                
                 // negative side
                 rect_neg = d3.select("svg")
                     .append("g")
@@ -94,6 +105,17 @@
                     d3.select(this).attr("class", "rect_highlight")});
                 
                 rect_neg.on("click", function() {});
+                
+                text_neg = d3.select("svg")
+                    .append("g")
+                    .attr("transform", "translate("+mg_left+","+mg_top+")")
+                    .selectAll("text")
+                    .data(data)
+                    .enter()
+                    .append("text")
+                    .attr("x", function(d,i) {return xs(countries[i]) + 15})
+                    .attr("y", function(d) {return ys_neg(d.Renewable)});
+                    .text(function(d) {return d.Renewable});
                 
                 // y axis
                 d3.select("svg")
