@@ -24,7 +24,6 @@
         <script>
             async function init() {
                 country = location.search.substring(1).split("&")[0].split("=")[1];
-                console.log(country);
                 
                 const data = await d3.csv(
                     'Data/' + country + '.csv');
@@ -32,7 +31,6 @@
                 
                 const lookup = await d3.csv(
                     'Data/Lookup.csv');
-                console.log(lookup);
                 abbr = lookup.map(function(d,i) {return d.Abbr});
                 full = lookup.map(function(d,i) {return d.Full});
                 
@@ -58,10 +56,8 @@
                     .domain([0, maxd])
                     .range([h, 0]);
                 
-                console.log(years.length);
                 console.log(xs(0));
-                console.log(xs(2));
-                console.log(xs(100));
+                console.log(xs(years.length));
                 
                 line = d3.line()
                     .x(function(d, i) {return xs(i)})
@@ -71,10 +67,8 @@
                 d3.select("svg")
                     .append("g")
                     .attr("transform", "translate("+mg_left+","+mg_top+")")
-                    .selectAll("path")
-                    .data(data)
-                    .enter()
                     .append("path")
+                    .data([data])
                     .attr("d", line)
                     .attr("class", "line")
                     .attr("color", colors[0]);
