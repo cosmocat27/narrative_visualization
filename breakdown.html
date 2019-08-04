@@ -51,7 +51,7 @@
                 lastrow = data[data.length-1];
                 chartdata = []
                 data.columns.slice(1).forEach(function(k) {
-                    chartdata.push(lastrow[k]);
+                    chartdata.push(parseFloat(lastrow[k]));
                 });
                 console.log(chartdata);
                 
@@ -70,13 +70,11 @@
                     .attr("d", arc)
                     .attr("fill", function(d) {return colors[d.index]});
                 
-                console.log(chartdata);
                 chartdata.sort();
-                console.log(chartdata);
                 chartdata.reverse();
                 console.log(chartdata);
                 var chartdata_cumsum = [];
-                chartdata.reduce(function(a,b,i) {return chartdata_cumsum[i] = a + parseFloat(b)}, 0);
+                chartdata.reduce(function(a,b,i) {return chartdata_cumsum[i] = a + b}, 0);
                 console.log(chartdata_cumsum);
                 var chartdata_tot = chartdata_cumsum[chartdata_cumsum.length-1];
                 var chartdata_pct = chartdata.map(function(d, i) {return [d/chartdata_tot, chartdata_cumsum[i]/chartdata_tot]});
