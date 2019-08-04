@@ -64,6 +64,7 @@
                     .selectAll("path")
                     .data(data)
                     .enter()
+                    .append("path")
                     .attr("x", function(d,i) {return xs(i)})
                     .attr("y", function(d) {return ys_ax(d["Coal"])})
                     .attr("class", "line")
