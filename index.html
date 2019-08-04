@@ -62,12 +62,12 @@
                     .attr("class", "rect_pos")
                 
                 rect_pos.transition()
-                    .duration(3000)
+                    .duration(2500)
                     .attr("y", function(d) {return mid-ys_pos(d.Nonrenewable)})
                     .attr("height", function(d) {return ys_pos(d.Nonrenewable)})
                 
                 rect_pos.on("mouseover", function(d,i) {
-                    d3.select(this).attr("stroke", "yellow")});
+                    d3.select(this).attr("fill", "yellow")});
                 
                 // negative side
                 rect_neg = d3.select("svg")
@@ -84,11 +84,11 @@
                     .attr("class", "rect_neg")
                 
                 rect_neg.transition()
-                    .duration(3000)
+                    .duration(2500)
                     .attr("height", function(d) {return ys_neg(d.Renewable) - mid})
                 
                 rect_neg.on("mouseover", function(d,i) {
-                    d3.select(this).attr("stroke", "yellow")});
+                    d3.select(this).attr("fill", "yellow")});
                 
                 // y axis
                 d3.select("svg")
