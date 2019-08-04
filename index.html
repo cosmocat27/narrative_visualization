@@ -70,7 +70,7 @@
                 rect_pos.on("mouseover", function() {
                     d3.select(this).attr("class", "rect_highlight")});
                 
-                rect_pos.on("mouseover", function() {});
+                rect_pos.on("click", function() {});
                 
                 // negative side
                 rect_neg = d3.select("svg")
@@ -93,7 +93,7 @@
                 rect_neg.on("mouseover", function() {
                     d3.select(this).attr("class", "rect_highlight")});
                 
-                rect_neg.on("mouseover", function() {});
+                rect_neg.on("click", function() {});
                 
                 // y axis
                 d3.select("svg")
