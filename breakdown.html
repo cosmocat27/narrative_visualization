@@ -36,8 +36,7 @@
                     'Data/Lookup.csv');
                 console.log(lookup);
                 
-                console.log(country);
-                country_full = lookup.full[lookup.abbr.indexOf("USA")];
+                country_full = lookup.Full[lookup.Abbr.indexOf(country)];
                 console.log(country_full);
                 document.getElementById("title").innerHTML = "Energy source distribution for " + country_full;
                 
