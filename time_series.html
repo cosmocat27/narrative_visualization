@@ -63,6 +63,11 @@
                 console.log(xs(2));
                 console.log(xs(100));
                 
+                line = d3.line()
+                    .x(function(d, i) {return xs(i)})
+                    .y(function(d) {return ys(d["Coal"])};
+                console.log(line);
+                
                 d3.select("svg")
                     .append("g")
                     .attr("transform", "translate("+mg_left+","+mg_top+")")
@@ -70,8 +75,7 @@
                     .data(data)
                     .enter()
                     .append("path")
-                    .attr("x", function(d,i) {return xs(i)})
-                    .attr("y", function(d) {return ys_ax(d["Coal"])})
+                    .attr("d", line)
                     .attr("class", "line")
                     .attr("color", colors[0]);
                 
