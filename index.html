@@ -82,8 +82,10 @@
                     .data(data)
                     .enter()
                     .append("text")
-                    .attr("x", function(d,i) {return xs(countries[i]) + 15})
-                    .attr("y", function(d) {return mid-ys_pos(d.Nonrenewable)})
+                    .attr("x", function(d,i) {return xs(countries[i]) + 45})
+                    .attr("y", function(d) {return mid-ys_pos(d.Nonrenewable) - 5})
+                
+                text_pos.transition(2500)
                     .text(function(d) {return d.Nonrenewable});
                 
                 // negative side
@@ -100,8 +102,7 @@
                     .attr("height", function(d) {return ys_neg(20) - mid})
                     .attr("class", "rect_neg")
                 
-                rect_neg.transition()
-                    .duration(2500)
+                rect_neg.transition(2500)
                     .attr("height", function(d) {return ys_neg(d.Renewable) - mid});
                 
                 rect_neg.on("mouseover", function() {
@@ -119,8 +120,11 @@
                     .data(data)
                     .enter()
                     .append("text")
-                    .attr("x", function(d,i) {return xs(countries[i]) + 15})
-                    .attr("y", function(d) {return ys_neg(d.Renewable)})
+                    .attr("x", function(d,i) {return xs(countries[i]) + 45})
+                    .attr("y", function(d) {return ys_neg(d.Renewable) + 25})
+                
+                text_neg.transition()
+                    .delay(2500)
                     .text(function(d) {return d.Renewable});
                 
                 // y axis
