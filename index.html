@@ -41,7 +41,8 @@
                 maxd = 150;
                 maxd_neg = 50;
                 mid = h * maxd / (maxd + maxd_neg);
-                countries = data.Country;
+                countries = data.map(function(d,i) {return d.Country});
+                console.log(countries);
                 
                 xs = d3.scaleBand()
                     .domain(countries)
