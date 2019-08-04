@@ -68,7 +68,7 @@
                     .append("g")
                     .attr("transform", "translate("+mg_left+","+mg_top+")")
                     .append("path")
-                    .data([data])
+                    .data([data.slice(20)])
                     .attr("d", line)
                     .attr("class", "line")
                     .attr("color", colors[0]);
