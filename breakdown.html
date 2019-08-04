@@ -71,6 +71,7 @@
                     .attr("d", arc)
                     .attr("fill", function(d) {return colors[d.index]});
                 
+                chartdata.sort();
                 var chartdata_cumsum = [];
                 chartdata.reduce(function(a,b,i) {return chartdata_cumsum[i] = a + parseFloat(b)}, 0);
                 console.log(chartdata_cumsum);
