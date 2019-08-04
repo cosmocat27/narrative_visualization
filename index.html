@@ -60,12 +60,12 @@
                     .attr("height", function(d) {return ys_pos(0)})
                     .attr("class", "rect_pos")
                 
-                rects_pos.transition()
+                rect_pos.transition()
                     .duration(3000)
                     .attr("y", function(d) {return mid-ys_pos(d.Nonrenewable)})
                     .attr("height", function(d) {return ys_pos(d.Nonrenewable)})
                 
-                rects_pos.on("mouseover", function(d,i) {
+                rect_pos.on("mouseover", function(d,i) {
                     d3.select(this).attr("stroke", "yellow")});
                 
                 // negative side
