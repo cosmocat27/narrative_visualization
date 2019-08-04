@@ -1,59 +1,51 @@
 <html>
     <head>
-        <style> circle {fill: lightblue; stroke: black;} </style>
+        <style>
+            path {stroke: black;}
+            div.chart_title {margin-left: 180px; margin-top: 50px;}
+        </style>
+        
+        <script src='https://d3js.org/d3.v5.min.js'></script>
     </head>
     
     <body onload='init()'>
-        <h1>Hello Page</h1>
+        <h1>CS498 Narrative Visualization Assignment</h1>
+        <div class="chart_title">
+            <h2>Energy source distribution for the United States</h2>
+        </div>
         
-        <script src='https://d3js.org/d3.v5.min.js'></script>
-        
-        <svg width=300 height=300>
+        <svg width=800 height=800>
         </svg>
         
         <script>
             async function init() {
-            
+                parameters = location.search.substring(1).split("&");
+                console.log(parameters);
+                
+                country = "USA";
                 const data = await d3.csv(
-                'https://flunky.github.io/cars2017.csv');
+                'Data/' + country + '.csv');
+                console.log(data);
                 
-                h = 200;
-                mg = 50;
-                xs = d3.scaleLog()
-                .domain([10,150])
-                .range([0,200]);
-                ys = d3.scaleLog()
-                .domain([10,150])
-                .range([0,200]);
-                ys_ax = d3.scaleLog()
-                .domain([10,150])
-                .range([200,0]);
+                w = 600;
+                h = 600;
+                mg_left = 100;
+                mg_top = 10;
+                r = 100
                 
-                d3.select('svg')
-                .append('g')
-                .attr('transform', 'translate('+mg+','+mg+')')
-                .selectAll('circle')
-                .data(data)
-                .enter()
-                .append('circle')
-                .attr('cx', function(d) {return xs(d.AverageCityMPG)})
-                .attr('cy', function(d) {return h - ys(d.AverageHighwayMPG)})
-                .attr('r', function(d) {return 2 + parseInt(d.EngineCylinders)});
+                var data = [4,8,15,16,23,42];
+                var color = ['pink','lightyellow','lightgreen','lightcyan','lightblue','violet'];
+                var pie = d3.pie();
+                var arc = d3.arc().innerRadius(0).outerRadius(r);
                 
                 d3.select("svg")
-                .append("g")
-                .attr('transform', 'translate('+mg+','+mg+')')
-                .call(d3.axisLeft(ys_ax)
-                .tickValues([10,20,50,100])
-                .tickFormat(d3.format("~s")));
-                
-                d3.select("svg")
-                .append("g")
-                .attr('transform', 'translate('+mg+','+(h+mg)+')')
-                .call(d3.axisBottom(xs)
-                .tickValues([10,20,50,100])
-                .tickFormat(d3.format("~s")));
-            
+                    .append("g")
+                    .attr("transform", "translate("+(mg_left+r)+","+(r+mg_top)+")")
+                    .selectAll("path")
+                    .data(pie(data))
+                    .enter()
+                    .append("path")
+                    .attr("d", arc)
             }
         </script>
         
