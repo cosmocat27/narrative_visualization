@@ -58,6 +58,7 @@
                 var colors = ['DarkOrange','SkyBlue','Ivory','LawnGreen'];
                 var pie = d3.pie();
                 var arc = d3.arc().innerRadius(0).outerRadius(r);
+                console.log(pie(chartdata));
                 
                 d3.select("svg")
                     .append("g")
@@ -68,6 +69,17 @@
                     .append("path")
                     .attr("d", arc)
                     .attr("fill", function(d, i) {return colors[i]});
+                
+                d3.select("svg")
+                    .append("g")
+                    .attr("transform", "translate("+mg_left+","+mg_top+")")
+                    .selectAll("text")
+                    .data(chartdata)
+                    .enter()
+                    .append("text")
+                    .attr("x", function(d,i) {return i * 100})
+                    .attr("y", function() {return 500})
+                    .text(function(d) {return d});
             }
         </script>
         
