@@ -11,7 +11,7 @@
     <body onload='init()'>
         <h1>CS498 Narrative Visualization Assignment</h1>
         <div class="chart_title">
-            <h2>Energy source distribution for the United States</h2>
+            <h2 id="title></h2>
         </div>
         
         <svg width=800 height=800>
@@ -30,6 +30,10 @@
                 const lookup = await d3.csv(
                     'Data/Lookup.csv');
                 console.log(lookup);
+                
+                country_full = lookup.full[lookup.abbr.indexOf(country)];
+                console.log(country_full);
+                document.getElementById("title").innerHTML = Energy source distribution for " + country_full;
                 
                 w = 600;
                 h = 600;
