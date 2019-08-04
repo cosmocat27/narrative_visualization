@@ -35,8 +35,10 @@
                 const lookup = await d3.csv(
                     'Data/Lookup.csv');
                 console.log(lookup);
+                abbr = lookup.map(function(d,i) {return d.Abbr});
+                full = lookup.map(function(d,i) {return d.Full});
                 
-                country_full = lookup.Full[lookup.Abbr.indexOf(country)];
+                country_full = full[abbr.indexOf(country)];
                 console.log(country_full);
                 document.getElementById("title").innerHTML = "Energy source distribution for " + country_full;
                 
