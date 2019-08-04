@@ -4,6 +4,7 @@
             rect.rect_pos {fill: DarkOrange; stroke: black; }
             rect.rect_neg {fill: LawnGreen; stroke: black; }
             div.chart_title {margin-left: 180px; margin-top: 50px;}
+            rect.rect_highlight {fill: SkyBlue; stroke: yellow; }
         </style>
         
         <script src='https://d3js.org/d3.v5.min.js'></script>
@@ -67,7 +68,9 @@
                     .attr("height", function(d) {return ys_pos(d.Nonrenewable)});
                 
                 rect_pos.on("mouseover", function() {
-                    d3.select(this).attr("fill", "yellow")});
+                    d3.select(this).attr("class", "rect_highlight")});
+                
+                rect_pos.on("mouseover", function() {});
                 
                 // negative side
                 rect_neg = d3.select("svg")
@@ -88,7 +91,9 @@
                     .attr("height", function(d) {return ys_neg(d.Renewable) - mid});
                 
                 rect_neg.on("mouseover", function() {
-                    d3.select(this).attr("fill", "yellow")});
+                    d3.select(this).attr("class", "rect_highlight")});
+                
+                rect_neg.on("mouseover", function() {});
                 
                 // y axis
                 d3.select("svg")
