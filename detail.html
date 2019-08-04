@@ -33,7 +33,7 @@
                 mg_top = 10;
                 r = 100
                 
-                var data = [4,8,15,16,23,42];
+                var data2 = [4,8,15,16,23,42];
                 var color = ['pink','lightyellow','lightgreen','lightcyan','lightblue','violet'];
                 var pie = d3.pie();
                 var arc = d3.arc().innerRadius(0).outerRadius(r);
@@ -42,7 +42,7 @@
                     .append("g")
                     .attr("transform", "translate("+(mg_left+r)+","+(r+mg_top)+")")
                     .selectAll("path")
-                    .data(pie(data))
+                    .data(pie(data2))
                     .enter()
                     .append("path")
                     .attr("d", arc)
