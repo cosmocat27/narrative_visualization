@@ -50,6 +50,13 @@
                 mg_top = 20;
                 r = 250;
                 
+                lastrow = data[data.length-1];
+                chartdata = []
+                data.columns.slice(1).forEach(function(k) {
+                    console.log(k);
+                    console.log(lastrow[k]);
+                    chartdata.append(lastrow[k]);
+                });
                 var data2 = [4,8,15,16,23,42];
                 var color2 = ['pink','lightyellow','lightgreen','lightcyan','lightblue','violet'];
                 var color = ['DarkOrange','SkyBlue','Ivory','LawnGreen'];
@@ -61,7 +68,7 @@
                     .append("g")
                     .attr("transform", "translate("+(mg_left+r)+","+(r+mg_top)+")")
                     .selectAll("path")
-                    .data(pie(data[data.length-1].slice(1)))
+                    .data(pie(chartdata))
                     .enter()
                     .append("path")
                     .attr("d", arc)
