@@ -36,9 +36,10 @@
                 const lookup = await d3.csv(
                     'Data/Lookup.csv');
                 console.log(lookup);
+                abbr = lookup.map(function(d,i) {return d.Abbr});
+                full = lookup.map(function(d,i) {return d.Full});
                 
-                country_full = lookup.full[lookup.abbr.indexOf(country)];
-                console.log(country_full);
+                country_full = full[abbr.indexOf(country)];
                 document.getElementById("title").innerHTML = "Energy usage over time for " + country_full;
                 
                 w = 600;
