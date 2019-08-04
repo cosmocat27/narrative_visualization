@@ -43,11 +43,11 @@
                     .append("g")
                     .attr("transform", "translate("+(mg_left+r)+","+(r+mg_top)+")")
                     .selectAll("path")
-                    .data(pie(data.2016))
+                    .data(pie(data2))
                     .enter()
                     .append("path")
                     .attr("d", arc)
-                    .attr("fill", function(d, i) {return color[i]});
+                    .attr("fill", function(d, i) {return color2[i]});
             }
         </script>
         
