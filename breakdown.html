@@ -71,9 +71,9 @@
                     .attr("fill", function(d) {return colors[d.index]});
                 
                 console.log(chartdata);
-                chartdata = chartdata.sort();
+                chartdata.sort();
                 console.log(chartdata);
-                chartdata = chartdata.reverse();
+                chartdata.reverse();
                 console.log(chartdata);
                 var chartdata_cumsum = [];
                 chartdata.reduce(function(a,b,i) {return chartdata_cumsum[i] = a + parseFloat(b)}, 0);
