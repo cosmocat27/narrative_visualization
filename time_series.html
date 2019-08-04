@@ -41,7 +41,7 @@
                 country_full = full[abbr.indexOf(country)];
                 document.getElementById("title").innerHTML = "Energy usage over time for " + country_full;
                 
-                years = data.map(function(d,i) {return d.Year});
+                years = data.map(function(d,i) {return parseInt(d.Year)});
                 
                 w = 600;
                 h = 600;
