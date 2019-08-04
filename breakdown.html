@@ -54,6 +54,7 @@
                 var pie = d3.pie();
                 var arc = d3.arc().innerRadius(0).outerRadius(r);
                 
+                console.log(data[data.length-1]);
                 d3.select("svg")
                     .append("g")
                     .attr("transform", "translate("+(mg_left+r)+","+(r+mg_top)+")")
