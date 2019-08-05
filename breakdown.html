@@ -13,12 +13,14 @@
         <svg width=800 height=600>
         </svg><br>
         
-        <form id="form_timeseries" action="time_series.html" method="GET">
-            <input id="country_field" type="hidden" name="country" value="">
-            <button type="submit" class="nav_fwd">See energy usage over time</button>
-        </form>
-        
-        <button class="nav_back" onclick="window.location.href = 'index.html';">Return to overview</button>
+        <div class="navigation">
+            <form id="form_timeseries" action="time_series.html" method="GET">
+                <input id="country_field" type="hidden" name="country" value="">
+                <button type="submit" class="nav_fwd">See energy usage over time</button>
+            </form>
+            
+            <button class="nav_back" onclick="window.location.href = 'index.html';">Return to overview</button>
+        </div>
         
         <script>
             async function init() {
