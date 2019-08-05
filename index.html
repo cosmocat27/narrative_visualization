@@ -81,11 +81,11 @@
                     d3.select("#tooltip")
                         .style("opacity", 1)
                         .style("left", (d3.event.pageX) + "px")
-                        .style("top", (d3.event.pageY - 40) + "px")
+                        .style("top", (d3.event.pageY) + "px")
                         .html(full[abbr.indexOf(d.Country)] + "<br>Renewable: " + d.Nonrenewable + "<br>Nonrenewable: " + d.Renewable);
                 });
                 
-                // update tooltip on mouseover
+                // update tooltip on mousemove
                 rect_pos.on("mousemove", function(d,i) {
                     d3.select("#tooltip")
                         .style("left", (d3.event.pageX) + "px")
@@ -135,23 +135,42 @@
                     .attr("height", function(d) {return ys_neg(0) - mid})
                     .attr("class", "rect_neg")
                 
+                // animation to grow the bar chart
                 rect_neg.transition()
                     .duration(2500)
                     .attr("height", function(d) {return ys_neg(d.Renewable) - mid});
                 
-                rect_neg.on("mouseover", function() {
-                    d3.select(this).attr("class", "rect_highlight")
+                // show tooltip and highlight on mouseover
+                rect_neg.on("mouseover", function(d,i) {
+                    d3.select(this).attr("class", "rect_highlight");
+                    d3.select("#tooltip")
+                        .style("opacity", 1)
+                        .style("left", (d3.event.pageX) + "px")
+                        .style("top", (d3.event.pageY) + "px")
+                        .html(full[abbr.indexOf(d.Country)] + "<br>Renewable: " + d.Nonrenewable + "<br>Nonrenewable: " + d.Renewable);
                 });
                 
+                // update tooltip on mousemove
+                rect_neg.on("mousemove", function(d,i) {
+                    d3.select("#tooltip")
+                        .style("left", (d3.event.pageX) + "px")
+                        .style("top", (d3.event.pageY) + "px")
+                });
+                
+                // remove tooltip and highlight on mouseout
                 rect_neg.on("mouseout", function() {
-                    d3.select(this).attr("class", "rect_neg")
+                    d3.select(this).attr("class", "rect_neg");
+                    d3.select("#tooltip")
+                        .style("opacity", 0);
                 });
                 
+                // navigate to country's detail page on click
                 rect_neg.on("click", function() {
                     document.getElementById("country_field").value=d3.select(this).data()[0].Country;
                     document.getElementById("form_breakdown").submit();
                 });
                 
+                // data labels
                 text_neg = d3.select("svg")
                     .append("g")
                     .attr("transform", "translate("+mg_left+","+mg_top+")")
@@ -162,6 +181,7 @@
                     .attr("x", function(d,i) {return xs(countries[i]) + 45})
                     .attr("y", function(d) {return ys_neg(d.Renewable) + 25})
                 
+                // show data labels only when animation is done
                 text_neg.transition()
                     .delay(2500)
                     .text(function(d) {return d.Renewable});
