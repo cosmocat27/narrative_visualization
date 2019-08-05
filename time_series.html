@@ -85,11 +85,27 @@
                     .attr("transform", "translate("+mg_left+","+mg_top+")")
                     .call(d3.axisLeft(ys));
                 
+                d3.select("svg")
+                    .append("text")
+                    .attr("transform", "translate("+mg_left+","+mg_top+") rotate(-90)")
+                    .attr("y", -40)
+                    .attr("x", -h/2)
+                    .style("text-anchor", "middle")
+                    .text("Energy Consumption in qBTU");
+                
                 // x axis
                 d3.select("svg")
                     .append("g")
                     .attr("transform", "translate("+mg_left+","+(h+mg_top)+")")
                     .call(d3.axisBottom(xs));
+                
+                d3.select("svg")
+                    .append("text")
+                    .attr("transform", "translate("+mg_left+","+(h+mg_top)+")")
+                    .attr("y", 40)
+                    .attr("x", width/2)
+                    .style("text-anchor", "middle")
+                    .text("Energy Consumption in qBTU");
                 
                 /*
                 rect_pos.transition()
