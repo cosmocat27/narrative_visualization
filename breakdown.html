@@ -48,11 +48,12 @@
                     chartdata.push(parseFloat(lastrow[k]));
                 });
                 
-                var colors = ['DarkOrange','SkyBlue','Ivory','LawnGreen'];
-                var pie = d3.pie();
-                var arc = d3.arc().innerRadius(0).outerRadius(r);
+                colors = ['DarkOrange','SkyBlue','Ivory','LawnGreen'];
+                pie = d3.pie();
+                arc = d3.arc().innerRadius(0).outerRadius(r);
                 console.log(pie(chartdata));
                 
+                // draw pie chart
                 d3.select("svg")
                     .append("g")
                     .attr("transform", "translate("+(mg_left+r)+","+(mg_top+r)+")")
@@ -62,17 +63,17 @@
                     .append("path")
                     .attr("d", arc)
                     .attr("class", "pie")
-                    .attr("fill", function(d) {return colors[d.index]});
+                    .attr("fill", function(d,i) {return colors[i]});
                 
+                // data labels
                 chartdata.sort(function(a, b){return b - a});
-                var chartdata_cumsum = [];
+                chartdata_cumsum = [];
                 chartdata.reduce(function(a,b,i) {return chartdata_cumsum[i] = a + b}, 0);
-                console.log(chartdata_cumsum);
-                var chartdata_tot = chartdata_cumsum[chartdata_cumsum.length-1];
-                var chartdata_pct = chartdata.map(function(d, i) {return [d/chartdata_tot, chartdata_cumsum[i]/chartdata_tot]});
+                chartdata_tot = chartdata_cumsum[chartdata_cumsum.length-1];
+                chartdata_pct = chartdata.map(function(d, i) {return [d/chartdata_tot, chartdata_cumsum[i]/chartdata_tot]});
                 console.log(chartdata_pct);
-                var x_text = function(p, t, r) {return r * Math.cos(Math.PI/2 - 2*Math.PI * (t - p/2))};
-                var y_text = function(p, t, r) {return -r * Math.sin(Math.PI/2 - 2*Math.PI * (t - p/2))};
+                x_text = function(p, t, r) {return r * Math.cos(Math.PI/2 - 2*Math.PI * (t - p/2))};
+                y_text = function(p, t, r) {return -r * Math.sin(Math.PI/2 - 2*Math.PI * (t - p/2))};
                 
                 d3.select("svg")
                     .append("g")
@@ -85,6 +86,35 @@
                     .attr("y", function(d) {return y_text(d[0], d[1], r*2/3)})
                     .text(function(d) {return Math.round(100*d[0]) + "%"})
                     .attr("style", "font-size:16px");
+                
+                // legend colors
+                legend_xpos = 500;
+                legend_ypos = 0;
+                legendLabelSize = 20;
+                d3.select("svg")
+                    .append("g")
+                    .attr("class","legend")
+                    .attr("transform", "translate("+mg_left+","+mg_top+")")
+                    .selectAll("rect")
+                    .data(colors)
+                    .append("rect")
+                    .attr("x", legend_xpos)
+                    .attr("y", function(d,i) {return legend_ypos + i * (legendLabelSize+10)})
+                    .attr("width", legendLabelSize)
+                    .attr("height", legendLabelSize)
+                    .attr("fill", function(d) {return d});
+                
+                // legend labels
+                legend_labels = data.columns.slice(1);
+                d3.select(".legend")
+                    .selectAll("text")
+                    .data(legend_labels)
+                    .enter()
+                    .append("text")
+                    .attr("x", legend_xpos + legendLabelSize + 10)
+                    .attr("y", function(d,i) {return legend_ypos + 10 + i * (legendLabelSize+10)})
+                    .text(function(d) {return d})
+                    .style("font-size","12px");
             }
         </script>
         
