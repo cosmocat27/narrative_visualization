@@ -51,7 +51,7 @@ rect.rect_pos {fill: DarkOrange; stroke: black;}
 rect.rect_neg {fill: LawnGreen; stroke: black;}
 rect.rect_highlight {fill: SkyBlue; stroke: black;}
 
-path.pie {stroke: black; stroke-width: 2px;}
+path.pie {stroke: black; stroke-width: 1px;}
 path.pie_highlight {stroke: Gold; stroke-width: 3px;}
 
 path.line {
