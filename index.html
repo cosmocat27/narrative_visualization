@@ -1,14 +1,7 @@
 <html>
     <head>
-        <style>
-            rect.rect_pos {fill: DarkOrange; stroke: black;}
-            rect.rect_neg {fill: LawnGreen; stroke: black;}
-            div.chart_title {margin-left: 180px; margin-top: 50px;}
-            rect.rect_highlight {fill: SkyBlue; stroke: black;}
-            #tooltip {opacity: 0;}
-        </style>
-        
         <script src='https://d3js.org/d3.v5.min.js'></script>
+        <link rel="stylesheet" href="style.css">
     </head>
     
     <body onload='init()'>
@@ -88,7 +81,6 @@
                     console.log((d3.event.pageX) + "px");
                     console.log((d3.event.pageY) + "px");
                     console.log(full[abbr.indexOf(d.Country)] + ": " + d.Nonrenewable + "; " + d.Renewable);
-                    //tooltip = document.getElementById("tooltip");
                     d3.select("#tooltip")
                         .style("opacity", 1)
                         .style("left", (d3.event.pageX) + "px")
@@ -99,8 +91,8 @@
                 // remove tooltip and highlight on mouseout
                 rect_pos.on("mouseout", function() {
                     d3.select(this).attr("class", "rect_pos");
-                    tooltip = document.getElementById("tooltip");
-                    tooltip.style("opacity", 0);
+                    d3.select("#tooltip")
+                        .style("opacity", 0);
                 });
                 
                 // navigate to country's detail page on click
