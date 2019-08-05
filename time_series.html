@@ -185,6 +185,17 @@
                         .style("text-anchor", "middle")
                         .style("font-weight", "bold")
                         .text("China pulls back on use of coal after 2013");
+                    
+                    d3.select("svg")
+                        .append("g")
+                        .attr("class","annotation")
+                        .attr("transform", "translate("+mg_left+","+mg_top+")")
+                        .append("text")
+                        .attr("x", w - 100)
+                        .attr("y", h - 150)
+                        .style("text-anchor", "middle")
+                        .style("font-weight", "bold")
+                        .text("Other energy sources are increasing quickly");
                 }
                 
                 if (country == "USA") {
@@ -198,6 +209,17 @@
                         .style("text-anchor", "middle")
                         .style("font-weight", "bold")
                         .text("Renewable energy is steadily increasing in the USA");
+                    
+                    d3.select("svg")
+                        .append("g")
+                        .attr("class","annotation")
+                        .attr("transform", "translate("+mg_left+","+mg_top+")")
+                        .append("text")
+                        .attr("x", w - 100)
+                        .attr("y", h - 25)
+                        .style("text-anchor", "middle")
+                        .style("font-weight", "bold")
+                        .text("Coal use is declining quickly");
                 }
                 
                 if (country == "RUS") {
