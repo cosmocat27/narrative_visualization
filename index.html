@@ -15,14 +15,16 @@
         
         <div id="tooltip"></div>
         
-        <p>
-            Just for backup in case clicking on the chart doesn't work<br>
-            Type the 3-letter acronym and submit to see country details page
-        </p>
-        <form id="form_breakdown" action="breakdown.html" method="GET">
-            <input id="country_field" name="country" value="">
-            <button type="submit">See country energy source details/button>
-        </form>
+        <div style=display:none">
+            <p>
+                Just for backup in case clicking on the chart doesn't work<br>
+                Type the 3-letter acronym and submit to see country details page
+            </p>
+            <form id="form_breakdown" action="breakdown.html" method="GET">
+                <input id="country_field" name="country" value=""><br>
+                <button type="submit">See country energy source details/button>
+            </form>
+        </div>
         
         <script>
             async function init() {
