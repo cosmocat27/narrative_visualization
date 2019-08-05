@@ -27,7 +27,6 @@
                 else {
                     country = 'USA';
                 }
-                document.getElementById("country_field").value=country;
                 
                 const data = await d3.csv(
                     'Data/' + country + '.csv');
