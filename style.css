@@ -12,7 +12,17 @@ button {
     cursor: pointer;
 }
 
-#tooltip {opacity: 0;}
+#tooltip {
+    opacity: 0;
+    position: absolute;
+    text-align: center;
+    padding: 2px;
+    font: 12px sans-serif;
+    background: lightsteelblue;
+    border: 0px;
+    border-radius: 8px;
+    pointer-events: none;
+}
 
 rect.rect_pos {fill: DarkOrange; stroke: black;}
 rect.rect_neg {fill: LawnGreen; stroke: black;}
