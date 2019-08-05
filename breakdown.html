@@ -61,7 +61,7 @@
                     .enter()
                     .append("path")
                     .attr("d", arc)
-                    .attr("class", pie)
+                    .attr("class", "pie")
                     .attr("fill", function(d) {return colors[d.index]});
                 
                 chartdata.sort(function(a, b){return b - a});
