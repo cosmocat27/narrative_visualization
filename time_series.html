@@ -86,7 +86,7 @@
                     
                     // show tooltip and highlight on mouseover
                     markers.on("mouseover", function(d,i) {
-                        //d3.select(this).attr("class", "rect_highlight");
+                        d3.select(this).attr("fill", "SlateGray");
                         d3.select("#tooltip")
                             .style("opacity", 1)
                             .style("left", (d3.event.pageX) + "px")
@@ -103,7 +103,7 @@
 
                     // remove tooltip and highlight on mouseout
                     markers.on("mouseout", function() {
-                        //d3.select(this).attr("class", "rect_pos");
+                        d3.select(this).attr("fill", colors[j]);
                         d3.select("#tooltip")
                             .style("opacity", 0);
                     });
