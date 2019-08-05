@@ -75,33 +75,39 @@
                     .attr("height", function(d) {return ys_pos(0)})
                     .attr("class", "rect_pos")
                 
+                // animation to grow the bar chart
                 rect_pos.transition()
                     .duration(2500)
                     .attr("y", function(d) {return mid-ys_pos(d.Nonrenewable)})
                     .attr("height", function(d) {return ys_pos(d.Nonrenewable)});
                 
+                // tooltip and highlight on mouseover
                 rect_pos.on("mouseover", function(d,i) {
                     d3.select(this).attr("class", "rect_highlight");
                     console.log((d3.event.pageX) + "px");
                     console.log((d3.event.pageY) + "px");
                     console.log(full[abbr.indexOf(d.Country)] + ": " + d.Nonrenewable + "; " + d.Renewable);
-                    tooltip = document.getElementById("tooltip);
+                    tooltip = document.getElementById("tooltip");
                     tooltip.style("opacity", 1)
                         .style("left", (d3.event.pageX) + "px")
                         .style("top", (d3.event.pageY) + "px")
                         .html(full[abbr.indexOf(d.Country)] + ": " + d.Nonrenewable + "; " + d.Renewable);
                 });
                 
+                // remove tooltip and highlight on mouseout
                 rect_pos.on("mouseout", function() {
-                    d3.select(this).attr("class", "rect_pos")
+                    d3.select(this).attr("class", "rect_pos");
+                    tooltip = document.getElementById("tooltip");
+                    tooltip.style("opacity", 0);
                 });
                 
-                // tooltip and highlight on mouseover
+                // navigate to country's detail page on click
                 rect_pos.on("click", function() {
                     document.getElementById("country_field").value=d3.select(this).data()[0].Country;
                     document.getElementById("form_breakdown").submit();
                 });
                 
+                // data labels
                 text_pos = d3.select("svg")
                     .append("g")
                     .attr("transform", "translate("+mg_left+","+mg_top+")")
@@ -112,6 +118,7 @@
                     .attr("x", function(d,i) {return xs(countries[i]) + 45})
                     .attr("y", function(d) {return mid-ys_pos(d.Nonrenewable) - 5})
                 
+                // show data labels only when animation is done
                 text_pos.transition()
                     .delay(2500)
                     .text(function(d) {return d.Nonrenewable});
