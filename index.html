@@ -30,7 +30,6 @@
             async function init() {
                 const data = await d3.csv(
                     'Data/Top5.csv');
-                console.log(data);
                 
                 const lookup = await d3.csv(
                     'Data/Lookup.csv');
@@ -259,6 +258,7 @@
                     .attr("x", w/2)
                     .attr("y", h*0.92)
                     .style("text-anchor", "middle")
+                    .style("font-weight", "bold")
                     .text("Click on a country's bar to see more details!");
             }
         </script>
