@@ -26,12 +26,16 @@
         
         <script>
             async function init() {
-                country = location.search.substring(1).split("&")[0].split("=")[1];
+                if (location.includes("?")) {
+                    country = location.search.substring(1).split("&")[0].split("=")[1];
+                }
+                else {
+                    country = 'USA';
+                }
                 document.getElementById("country_field").value=country;
                 
                 const data = await d3.csv(
                     'Data/' + country + '.csv');
-                console.log(data);
                 
                 const lookup = await d3.csv(
                     'Data/Lookup.csv');
@@ -54,8 +58,6 @@
                 sources.forEach(function(k) {
                     chartdata.push(parseFloat(lastrow[k]));
                 });
-                
-                console.log(pie(chartdata));
                 
                 // draw pie chart
                 pie_path = d3.select("svg")
@@ -97,7 +99,6 @@
                 chartdata.reduce(function(a,b,i) {return chartdata_cumsum[i] = a + b}, 0);
                 chartdata_tot = chartdata_cumsum[chartdata_cumsum.length-1];
                 chartdata_pct = chartdata.map(function(d, i) {return [d/chartdata_tot, chartdata_cumsum[i]/chartdata_tot]});
-                console.log(chartdata_pct);
                 x_text = function(p, t, r) {return r * Math.cos(Math.PI/2 - 2*Math.PI * (t - p/2))};
                 y_text = function(p, t, r) {return -r * Math.sin(Math.PI/2 - 2*Math.PI * (t - p/2))};
                 
