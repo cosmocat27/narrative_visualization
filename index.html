@@ -82,7 +82,7 @@
                         .style("opacity", 1)
                         .style("left", (d3.event.pageX) + "px")
                         .style("top", (d3.event.pageY) + "px")
-                        .html(full[abbr.indexOf(d.Country)] + ": " + d.Nonrenewable + "; " + d.Renewable);
+                        .html(full[abbr.indexOf(d.Country)] + "<br>Renewable: " + d.Nonrenewable + "<br>Nonrenewable: " + d.Renewable);
                 });
                 
                 // update tooltip on mouseover
