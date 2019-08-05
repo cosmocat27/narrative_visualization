@@ -71,6 +71,7 @@
                 
                 // show tooltip and highlight on mouseover
                 pie_path.on("mouseover", function(d,i) {
+                    d3.select(this).attr("class", "pie_highlight");
                     d3.select("#tooltip")
                         .style("opacity", 1)
                         .style("left", (d3.event.pageX) + "px")
@@ -85,6 +86,7 @@
                 });
                 // remove tooltip and highlight on mouseout
                 pie_path.on("mouseout", function() {
+                    d3.select(this).attr("class", "pie");
                     d3.select("#tooltip")
                         .style("opacity", 0);
                 });
