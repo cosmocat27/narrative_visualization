@@ -31,7 +31,6 @@
                 
                 const lookup = await d3.csv(
                     'Data/Lookup.csv');
-                console.log(lookup);
                 abbr = lookup.map(function(d,i) {return d.Abbr});
                 full = lookup.map(function(d,i) {return d.Full});
                 
@@ -41,16 +40,17 @@
                 mg_left = 150;
                 mg_top = 20;
                 r = 250;
+                colors = ['DarkOrange','SkyBlue','Crimson','LawnGreen'];
+                sources = data.columns.slice(1);
+                pie = d3.pie();
+                arc = d3.arc().innerRadius(0).outerRadius(r);
                 
                 lastrow = data[data.length-1];
                 chartdata = []
-                data.columns.slice(1).forEach(function(k) {
+                sources.forEach(function(k) {
                     chartdata.push(parseFloat(lastrow[k]));
                 });
                 
-                colors = ['DarkOrange','SkyBlue','Crimson','LawnGreen'];
-                pie = d3.pie();
-                arc = d3.arc().innerRadius(0).outerRadius(r);
                 console.log(pie(chartdata));
                 
                 // draw pie chart
@@ -107,7 +107,7 @@
                     .attr("stroke", "black");
                 
                 // legend labels
-                legend_labels = data.columns.slice(1);
+                legend_labels = sources;
                 d3.select(".legend")
                     .selectAll("text")
                     .data(legend_labels)
