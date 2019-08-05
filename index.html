@@ -75,17 +75,21 @@
                     .attr("y", function(d) {return mid-ys_pos(d.Nonrenewable)})
                     .attr("height", function(d) {return ys_pos(d.Nonrenewable)});
                 
-                // tooltip and highlight on mouseover
+                // show tooltip and highlight on mouseover
                 rect_pos.on("mouseover", function(d,i) {
                     d3.select(this).attr("class", "rect_highlight");
-                    console.log((d3.event.pageX) + "px");
-                    console.log((d3.event.pageY) + "px");
-                    console.log(full[abbr.indexOf(d.Country)] + ": " + d.Nonrenewable + "; " + d.Renewable);
                     d3.select("#tooltip")
                         .style("opacity", 1)
                         .style("left", (d3.event.pageX) + "px")
                         .style("top", (d3.event.pageY) + "px")
                         .html(full[abbr.indexOf(d.Country)] + ": " + d.Nonrenewable + "; " + d.Renewable);
+                });
+                
+                // update tooltip on mouseover
+                rect_pos.on("mousemove", function(d,i) {
+                    d3.select("#tooltip")
+                        .style("left", (d3.event.pageX) + "px")
+                        .style("top", (d3.event.pageY) + "px")
                 });
                 
                 // remove tooltip and highlight on mouseout
