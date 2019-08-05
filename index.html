@@ -19,7 +19,7 @@
         <svg width=800 height=800>
         </svg>
         
-        <div name="tooltip" opacity=0></div>
+        <div id="tooltip" opacity=0></div>
         
         <form id="form_breakdown" action="breakdown.html" method="GET">
             <input id="country_field" name="country" value="">
@@ -85,6 +85,7 @@
                     console.log((d3.event.pageX) + "px");
                     console.log((d3.event.pageY) + "px");
                     console.log(full[abbr.indexOf(d.Country)] + ": " + d.Nonrenewable + "; " + d.Renewable);
+                    tooltip = document.getElementById("tooltip);
                     tooltip.style("opacity", 1)
                         .style("left", (d3.event.pageX) + "px")
                         .style("top", (d3.event.pageY) + "px")
@@ -95,6 +96,7 @@
                     d3.select(this).attr("class", "rect_pos")
                 });
                 
+                // tooltip and highlight on mouseover
                 rect_pos.on("click", function() {
                     document.getElementById("country_field").value=d3.select(this).data()[0].Country;
                     document.getElementById("form_breakdown").submit();
