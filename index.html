@@ -88,7 +88,8 @@
                         .style("opacity", 1)
                         .style("left", (d3.event.pageX) + "px")
                         .style("top", (d3.event.pageY) + "px")
-                        .html(full[abbr.indexOf(d.Country)] + "<br>Nonrenewable: " + d.Nonrenewable + "<br>Renewable: " + d.Renewable);
+                        .html(full[abbr.indexOf(d.Country)] + "<br>Nonrenewable: " + d.Nonrenewable
+                              + " qBTU<br>Renewable: " + d.Renewable + " qBTU");
                 });
                 
                 // update tooltip on mousemove
@@ -156,7 +157,7 @@
                         .style("left", (d3.event.pageX) + "px")
                         .style("top", (d3.event.pageY) + "px")
                         .html(full[abbr.indexOf(d.Country)] + "<br>Nonrenewable: " + d.Nonrenewable
-                              + "qBTU<br>Renewable: " + d.Renewable + "qBTU");
+                              + " qBTU<br>Renewable: " + d.Renewable + " qBTU");
                 });
                 
                 // update tooltip on mousemove
@@ -206,7 +207,7 @@
                 d3.select("svg")
                     .append("text")
                     .attr("transform", "translate("+mg_left+","+mg_top+") rotate(-90)")
-                    .attr("y", -30)
+                    .attr("y", -40)
                     .attr("x", -h/2)
                     .style("text-anchor", "middle")
                     .text("Energy Consumption in qBTU");
