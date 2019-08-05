@@ -188,16 +188,24 @@
                 
                 // y axis
                 d3.select("svg")
-                .append("g")
-                .attr("transform", "translate("+mg_left+","+mg_top+")")
-                .call(d3.axisLeft(ys_ax));
+                    .append("g")
+                    .attr("transform", "translate("+mg_left+","+mg_top+")")
+                    .call(d3.axisLeft(ys_ax));
                 
                 // x axis
                 d3.select("svg")
-                .append("g")
-                .attr("transform", "translate("+mg_left+","+(ys_ax(0)+mg_top)+")")
-                .style("font", "14px times")
-                .call(d3.axisBottom(xs));
+                    .append("g")
+                    .attr("transform", "translate("+mg_left+","+(ys_ax(0)+mg_top)+")")
+                    .style("font", "14px times")
+                    .call(d3.axisBottom(xs));
+                
+                // legend
+                d3.select("svg")
+                    .append("g")
+                    .attr("class","legend")
+                    .attr("transform", "translate("+mg_left+","+mg_top+")")
+                    .style("font-size","12px")
+                    .call(d3.legend)
             }
         </script>
         
