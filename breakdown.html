@@ -97,6 +97,7 @@
                     .attr("transform", "translate("+mg_left+","+mg_top+")")
                     .selectAll("rect")
                     .data(colors)
+                    .enter()
                     .append("rect")
                     .attr("x", legend_xpos)
                     .attr("y", function(d,i) {return legend_ypos + i * (legendLabelSize+10)})
