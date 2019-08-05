@@ -96,7 +96,7 @@
                     markers.on("mousemove", function(d,i) {
                         d3.select("#tooltip")
                             .style("left", (d3.event.pageX) + "px")
-                            .style("top", (d3.event.pageY) + "px")
+                            .style("top", (d3.event.pageY-30) + "px")
                     });
 
                     // remove tooltip and highlight on mouseout
@@ -111,6 +111,7 @@
                 d3.select("svg")
                     .append("g")
                     .attr("transform", "translate("+mg_left+","+mg_top+")")
+                    .style("font", "12px times")
                     .call(d3.axisLeft(ys));
                 
                 d3.select("svg")
@@ -125,6 +126,7 @@
                 d3.select("svg")
                     .append("g")
                     .attr("transform", "translate("+mg_left+","+(h+mg_top)+")")
+                    .style("font", "14px times")
                     .call(d3.axisBottom(xs));
                 
                 d3.select("svg")
