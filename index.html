@@ -88,7 +88,7 @@
                         .style("opacity", 1)
                         .style("left", (d3.event.pageX) + "px")
                         .style("top", (d3.event.pageY) + "px")
-                        .html(full[abbr.indexOf(d.Country)] + "<br>Renewable: " + d.Nonrenewable + "<br>Nonrenewable: " + d.Renewable);
+                        .html(full[abbr.indexOf(d.Country)] + "<br>Nonrenewable: " + d.Nonrenewable + "<br>Renewable: " + d.Renewable);
                 });
                 
                 // update tooltip on mousemove
@@ -153,7 +153,7 @@
                         .style("opacity", 1)
                         .style("left", (d3.event.pageX) + "px")
                         .style("top", (d3.event.pageY) + "px")
-                        .html(full[abbr.indexOf(d.Country)] + "<br>Renewable: " + d.Nonrenewable + "<br>Nonrenewable: " + d.Renewable);
+                        .html(full[abbr.indexOf(d.Country)] + "<br>Nonrenewable: " + d.Nonrenewable + "<br>Renewable: " + d.Renewable);
                 });
                 
                 // update tooltip on mousemove
@@ -205,13 +205,28 @@
                     .style("font", "14px times")
                     .call(d3.axisBottom(xs));
                 
-                // legend
+                // legend colors
+                legend_colors = ["DarkOrange", "LawnGreen"];
                 d3.select("svg")
                     .append("g")
                     .attr("class","legend")
                     .attr("transform", "translate("+mg_left+","+mg_top+")")
-                    .style("font-size","12px")
-                    .call(d3.legend);
+                    .selectAll("rect")
+                    .enter()
+                    .append("rect")
+                    .attr("x", 300)
+                    .attr("y", function(d,i) {return i * 50})
+                    .style("fill",function(d,i) {return legend_colors[i]});
+                
+                // legend labels
+                legend_labels = ["Nonrenewable", "Renewable"];
+                d3.select(".legend")
+                    .selectAll("text")
+                    .enter()
+                    .append("text")
+                    .attr("x", 350)
+                    .attr("y", function(d,i) {return i * 50})
+                    .style("font-size","12px");
             }
         </script>
         
