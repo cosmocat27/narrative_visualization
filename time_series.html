@@ -21,11 +21,16 @@
         
         <script>
             async function init() {
-                country = location.search.substring(1).split("&")[0].split("=")[1];
+                if (window.location.href.includes("?")) {
+                    country = location.search.substring(1).split("&")[0].split("=")[1];
+                }
+                else {
+                    country = 'USA';
+                }
+                document.getElementById("country_field").value=country;
                 
                 const data = await d3.csv(
                     'Data/' + country + '.csv');
-                console.log(data);
                 
                 const lookup = await d3.csv(
                     'Data/Lookup.csv');
@@ -169,6 +174,30 @@
                     .attr("y", function(d,i) {return legend_ypos + 10 + i * (legendLabelSize+10)})
                     .text(function(d) {return d})
                     .style("font-size","12px");
+                
+                if (country = "CHN") {
+                    d3.select("svg")
+                        .append("g")
+                        .attr("class","annotation")
+                        .attr("transform", "translate("+mg_left+","+mg_top+")")
+                        .append("text")
+                        .attr("x", 300)
+                        .attr("y", 100)
+                        .style("text-anchor", "middle")
+                        .text("China pulls back on use of coal after 2013");
+                }
+                
+                if (country = "USA")
+                    d3.select("svg")
+                        .append("g")
+                        .attr("class","annotation")
+                        .attr("transform", "translate("+mg_left+","+mg_top+")")
+                        .append("text")
+                        .attr("x", w - 100)
+                        .attr("y", h - 100)
+                        .style("text-anchor", "middle")
+                        .text("Renewable energy is steadily increasing in the USA");
+                }
                 
                 /*
                 rect_pos.transition()
