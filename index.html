@@ -206,18 +206,27 @@
                     .call(d3.axisBottom(xs));
                 
                 // legend colors
-                legend_colors = ["DarkOrange", "LawnGreen"];
+                legend_xpos = 400;
+                legend_ypos = 100;
+                legendLabelSize = 20;
                 d3.select("svg")
                     .append("g")
                     .attr("class","legend")
                     .attr("transform", "translate("+mg_left+","+mg_top+")")
-                    .selectAll("rect")
-                    .data(legend_colors)
-                    .enter()
                     .append("rect")
-                    .attr("x", 300)
-                    .attr("y", function(d,i) {return i * 50})
-                    .style("fill", function(d) {return d});
+                    .attr("class", "rect_pos")
+                    .attr("x", legend_xpos)
+                    .attr("y", legend_ypos})
+                    .attr("width", legendLabelSize)
+                    .attr("height", legendLabelSize);
+                
+                d3.select(".legend")
+                    .append("rect")
+                    .attr("class", "rect_neg")
+                    .attr("x", legend_xpos)
+                    .attr("y", legend_ypos + legendLabelSize + 10})
+                    .attr("width", legendLabelSize)
+                    .attr("height", legendLabelSize);
                 
                 // legend labels
                 legend_labels = ["Nonrenewable", "Renewable"];
@@ -226,8 +235,8 @@
                     .data(legend_labels)
                     .enter()
                     .append("text")
-                    .attr("x", 350)
-                    .attr("y", function(d,i) {return i * 50})
+                    .attr("x", legend_xpos + legendLabelSize + 10)
+                    .attr("y", function(d,i) {return legend_ypos + i * (legendLabelSize+10)})
                     .text(function(d) {return d})
                     .style("font-size","12px");
             }
