@@ -89,7 +89,7 @@
                             .style("opacity", 1)
                             .style("left", (d3.event.pageX) + "px")
                             .style("top", (d3.event.pageY) + "px")
-                            .html(d.Year + "<br>sources[k]: " + d[k]);
+                            .html(sources[k] + " " + d.Year + "<br>" + d[k]);
                     });
 
                     // update tooltip on mousemove
@@ -133,7 +133,7 @@
                     .attr("y", 40)
                     .attr("x", w/2)
                     .style("text-anchor", "middle")
-                    .text("Energy Consumption in qBTU");
+                    .text("Year");
                 
                 /*
                 rect_pos.transition()
