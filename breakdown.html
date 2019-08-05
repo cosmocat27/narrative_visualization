@@ -22,6 +22,8 @@
             <button class="nav_back" onclick="window.location.href = 'index.html';">Return to overview</button>
         </div>
         
+        <div id="tooltip"></div>
+        
         <script>
             async function init() {
                 country = location.search.substring(1).split("&")[0].split("=")[1];
@@ -56,7 +58,7 @@
                 console.log(pie(chartdata));
                 
                 // draw pie chart
-                d3.select("svg")
+                pie_path = d3.select("svg")
                     .append("g")
                     .attr("transform", "translate("+(mg_left+r)+","+(mg_top+r)+")")
                     .selectAll("path")
@@ -66,6 +68,26 @@
                     .attr("d", arc)
                     .attr("class", "pie")
                     .attr("fill", function(d,i) {return colors[i]});
+                
+                // show tooltip and highlight on mouseover
+                pie_path.on("mouseover", function(d,i) {
+                    d3.select("#tooltip")
+                        .style("opacity", 1)
+                        .style("left", (d3.event.pageX) + "px")
+                        .style("top", (d3.event.pageY-30) + "px")
+                        .html(sources[i] + ": " + d.value + " qBTU");
+                });
+                // update tooltip on mousemove
+                pie_path.on("mousemove", function(d,i) {
+                    d3.select("#tooltip")
+                        .style("left", (d3.event.pageX) + "px")
+                        .style("top", (d3.event.pageY-30) + "px")
+                });
+                // remove tooltip and highlight on mouseout
+                pie_path.on("mouseout", function() {
+                    d3.select("#tooltip")
+                        .style("opacity", 0);
+                });
                 
                 // data labels
                 chartdata.sort(function(a, b){return b - a});
