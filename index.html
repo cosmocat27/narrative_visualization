@@ -249,6 +249,17 @@
                     .attr("y", function(d,i) {return legend_ypos + 10 + i * (legendLabelSize+10)})
                     .text(function(d) {return d})
                     .style("font-size","12px");
+                
+                // annotation
+                d3.select("svg")
+                    .append("g")
+                    .attr("class","annotation")
+                    .attr("transform", "translate("+mg_left+","+mg_top+")")
+                    .append("text")
+                    .attr("x", w/2)
+                    .attr("y", h*0.9)
+                    .style("text-anchor", "middle")
+                    .text("Click on a country's bar to see more details!");
             }
         </script>
         
