@@ -3,6 +3,17 @@
         <style>
             path {stroke: black;}
             div.chart_title {margin-left: 180px; margin-top: 50px;}
+            button {
+                  background-color: SteelBlue;
+                  color: white;
+                  padding: 15px 32px;
+                  margin-left: 250px;
+                  text-align: center;
+                  text-decoration: none;
+                  display: inline-block;
+                  font-size: 16px;
+                  cursor: pointer;
+            }
         </style>
         
         <script src='https://d3js.org/d3.v5.min.js'></script>
@@ -14,12 +25,12 @@
             <h2 id="title"></h2>
         </div>
         
-        <svg width=800 height=800>
+        <svg width=800 height=600>
         </svg>
         
         <form id="form_timeseries" action="time_series.html" method="GET">
             <input id="country_field" type="hidden" name="country" value="">
-            <button type="submit">See energy usage over time</button>
+            <button type="submit" style="background-color: DarkGreen">See energy usage over time</button>
         </form>
         
         <button onclick="window.location.href = 'index.html';">Return to overview</button>
@@ -42,8 +53,6 @@
                 country_full = full[abbr.indexOf(country)];
                 document.getElementById("title").innerHTML = "Energy source distribution for " + country_full;
                 
-                w = 600;
-                h = 600;
                 mg_left = 150;
                 mg_top = 20;
                 r = 250;
