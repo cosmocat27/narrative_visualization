@@ -82,7 +82,7 @@
                     .enter()
                     .append("text")
                     .attr("x", function(d) {return x_text(d[0], d[1], r*2/3) - 10})
-                    .attr("y", function(d) {return y_text(d[0], d[1], r*2/3) - 5})
+                    .attr("y", function(d) {return y_text(d[0], d[1], r*2/3)})
                     .text(function(d) {return Math.round(100*d[0]) + "%"})
                     .attr("style", "font-size:16px");
             }
