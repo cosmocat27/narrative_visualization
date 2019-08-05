@@ -48,7 +48,7 @@
                     chartdata.push(parseFloat(lastrow[k]));
                 });
                 
-                colors = ['DarkOrange','SkyBlue','Ivory','LawnGreen'];
+                colors = ['DarkOrange','SkyBlue','Crimson','LawnGreen'];
                 pie = d3.pie();
                 arc = d3.arc().innerRadius(0).outerRadius(r);
                 console.log(pie(chartdata));
@@ -103,7 +103,8 @@
                     .attr("y", function(d,i) {return legend_ypos + i * (legendLabelSize+10)})
                     .attr("width", legendLabelSize)
                     .attr("height", legendLabelSize)
-                    .attr("fill", function(d) {return d});
+                    .attr("fill", function(d) {return d})
+                    .attr("stroke", "black");
                 
                 // legend labels
                 legend_labels = data.columns.slice(1);
