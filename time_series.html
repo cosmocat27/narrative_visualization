@@ -15,6 +15,8 @@
         
         <button class="nav_back" onclick="window.location.href = 'index.html';">Return to overview</button>
         
+        <div id="tooltip"></div>
+        
         <script>
             async function init() {
                 country = location.search.substring(1).split("&")[0].split("=")[1];
@@ -40,7 +42,8 @@
                 mg_left = 100;
                 mg_top = 10;
                 maxd = 100;
-                var colors = ['DarkOrange','SkyBlue','Crimson','LawnGreen'];
+                colors = ['DarkOrange','SkyBlue','Crimson','LawnGreen'];
+                sources = data.columns.slice(1);
                 
                 // scales
                 xs = d3.scaleLinear()
@@ -50,7 +53,7 @@
                     .domain([0, maxd])
                     .range([h, 0]);
                 
-                // draw line chart with markers
+                // draw line chart
                 data.columns.slice(1).forEach(function(k, j) {
                      line = d3.line()
                         .x(function(d,i) {return xs(years[i])})
@@ -65,7 +68,8 @@
                         .attr("class", "line")
                         .attr("stroke", colors[j]);
                     
-                    d3.select("svg")
+                    // add markers
+                    markers = d3.select("svg")
                         .append("g")
                         .attr("transform", "translate("+mg_left+","+mg_top+")")
                         .selectAll("circle")
@@ -77,6 +81,30 @@
                         .attr("cy", function(d) {return ys(d[k])})
                         .attr("r", 4)
                         .attr("fill", colors[j]);
+                    
+                    // show tooltip and highlight on mouseover
+                    markers.on("mouseover", function(d,i) {
+                        //d3.select(this).attr("class", "rect_highlight");
+                        d3.select("#tooltip")
+                            .style("opacity", 1)
+                            .style("left", (d3.event.pageX) + "px")
+                            .style("top", (d3.event.pageY) + "px")
+                            .html(d.Year + "<br>sources[k]: " + d[k]);
+                    });
+
+                    // update tooltip on mousemove
+                    markers.on("mousemove", function(d,i) {
+                        d3.select("#tooltip")
+                            .style("left", (d3.event.pageX) + "px")
+                            .style("top", (d3.event.pageY) + "px")
+                    });
+
+                    // remove tooltip and highlight on mouseout
+                    markers.on("mouseout", function() {
+                        //d3.select(this).attr("class", "rect_pos");
+                        d3.select("#tooltip")
+                            .style("opacity", 0);
+                    });
                 });
                 
                 // y axis
@@ -103,7 +131,7 @@
                     .append("text")
                     .attr("transform", "translate("+mg_left+","+(h+mg_top)+")")
                     .attr("y", 40)
-                    .attr("x", width/2)
+                    .attr("x", w/2)
                     .style("text-anchor", "middle")
                     .text("Energy Consumption in qBTU");
                 
@@ -112,33 +140,6 @@
                     .duration(2500)
                     .attr("y", function(d) {return mid-ys(d.Nonrenewable)})
                     .attr("height", function(d) {return ys(d.Nonrenewable)});
-                
-                rect_pos.on("mouseover", function() {
-                    d3.select(this).attr("class", "rect_highlight")
-                });
-                
-                rect_pos.on("mouseout", function() {
-                    d3.select(this).attr("class", "rect_pos")
-                });
-                
-                rect_pos.on("click", function() {
-                    document.getElementById("country_field").value=d3.select(this).data()[0].Country;
-                    document.getElementById("form_breakdown").submit();
-                });
-                
-                text_pos = d3.select("svg")
-                    .append("g")
-                    .attr("transform", "translate("+mg_left+","+mg_top+")")
-                    .selectAll("text")
-                    .data(data)
-                    .enter()
-                    .append("text")
-                    .attr("x", function(d,i) {return xs(countries[i]) + 45})
-                    .attr("y", function(d) {return mid-ys_pos(d.Nonrenewable) - 5})
-                
-                text_pos.transition()
-                    .duration(2500)
-                    .text(function(d) {return d.Nonrenewable});
                 */
             }
         </script>
