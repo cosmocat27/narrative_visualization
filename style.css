@@ -1,4 +1,8 @@
-div.chart_title {margin-left: 180px; margin-top: 50px;}
+div.chart_title {
+    margin-left: 180px;
+    margin-top: 50px;
+    text-align: center;
+}
 
 button.nav_fwd {
     background-color: DarkGreen;
