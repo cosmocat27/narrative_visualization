@@ -5,11 +5,16 @@ div.chart_title {
     text-align: center;
 }
 
+div.navigation {
+    margin-left: 100px;
+    width: 600px;
+    align-content: center;
+}
+
 button.nav_fwd {
     background-color: DarkGreen;
     color: white;
     padding: 15px 32px;
-    margin-left: 250px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -21,7 +26,6 @@ button.nav_back {
     background-color: SteelBlue;
     color: white;
     padding: 15px 32px;
-    margin-left: 270px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
