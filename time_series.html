@@ -200,6 +200,56 @@
                         .text("Renewable energy is steadily increasing in the USA");
                 }
                 
+                if (country == "RUS") {
+                    d3.select("svg")
+                        .append("g")
+                        .attr("class","annotation")
+                        .attr("transform", "translate("+mg_left+","+mg_top+")")
+                        .append("text")
+                        .attr("x", w - 100)
+                        .attr("y", 100)
+                        .style("text-anchor", "middle")
+                        .style("font-weight", "bold")
+                        .text("No data available for Russia before 1992");
+                    
+                    d3.select("svg")
+                        .append("g")
+                        .attr("class","annotation")
+                        .attr("transform", "translate("+mg_left+","+mg_top+")")
+                        .append("text")
+                        .attr("x", w - 100)
+                        .attr("y", h - 100)
+                        .style("text-anchor", "middle")
+                        .style("font-weight", "bold")
+                        .text("Energy usage in Russia is fairly consistent");
+                }
+                
+                if (country == "IND") {
+                    d3.select("svg")
+                        .append("g")
+                        .attr("class","annotation")
+                        .attr("transform", "translate("+mg_left+","+mg_top+")")
+                        .append("text")
+                        .attr("x", w - 100)
+                        .attr("y", h - 100)
+                        .style("text-anchor", "middle")
+                        .style("font-weight", "bold")
+                        .text("Energy usage is growing in India");
+                }
+                
+                if (country == "JPN") {
+                    d3.select("svg")
+                        .append("g")
+                        .attr("class","annotation")
+                        .attr("transform", "translate("+mg_left+","+mg_top+")")
+                        .append("text")
+                        .attr("x", w - 100)
+                        .attr("y", h - 100)
+                        .style("text-anchor", "middle")
+                        .style("font-weight", "bold")
+                        .text("Oil usage has been slowly decreasing in Japan");
+                }
+                
                 /*
                 rect_pos.transition()
                     .duration(2500)
